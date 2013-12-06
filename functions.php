@@ -65,7 +65,6 @@ $return .= $categories ;
 
 // $return .= ' <hr /> <p class="excerpt">' . $opm_excerpt . '</p>';
 
-
 $return .= '</div>';
 
 $return .= '</li>';
