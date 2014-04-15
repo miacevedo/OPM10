@@ -4,6 +4,9 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+
+
+
 body {
   margin: 0;
 }
@@ -6480,6 +6483,18 @@ footer.main .social_links a {
   text-decoration: none;
   color: #fff;
 }
+
+footer.main .fb-facepile {
+  font-size: 30px;
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 30px;
+}
+
 footer.main p.label {
   padding: 0;
   margin: 0;
