@@ -1,5 +1,4 @@
 <?PHP
-
 function dot_irt_top_posts ( $atts ) {
  
 // get our variable from $atts
