@@ -12,6 +12,9 @@ extract(shortcode_atts(array(
 ), $atts));
  
 global $wpdb;
+
+
+//testing
  
 $request = "SELECT * FROM $wpdb->posts, $wpdb->postmeta";
 $request .= " WHERE $wpdb->posts.ID = $wpdb->postmeta.post_id";
