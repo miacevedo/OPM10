@@ -1,0 +1,157 @@
+#tab_add_field,#tab_field_properties,#tab_form_properties {padding: 0px;}
+#builder_tabs {
+	padding: 0px;
+	border: none;
+	background:none;
+	font-size: 12px;
+	font-family: 'globersemibold','Trebuchet MS','Lucida Grande',Tahoma,Arial,sans-serif;
+}
+#builder_tabs ul.ui-widget-header{
+	background: none;
+	border: none;
+}
+#btn_add_field{
+	background:none repeat scroll 0 0 #EFFAB4;
+	margin-left: 13px;
+}
+#btn_add_field.ui-state-active,#btn_add_field.ui-state-default{
+	border: none;
+}
+#btn_field_properties{
+	background:none repeat scroll 0 0 #D1F2A5;
+}
+#btn_field_properties.ui-state-active,#btn_field_properties.ui-state-default{
+	border: none;
+}
+#btn_form_properties{
+	background:none repeat scroll 0 0 #FFEAE7;
+}
+#btn_form_properties.ui-state-active,#btn_form_properties.ui-state-default{
+	border: none;
+}
+.ui-tabs .ui-tabs-nav { margin: 0; padding: 0; }
+#all_form_properties a:link,#all_form_properties a:visited,#all_form_properties a:hover,
+#all_properties a:link,#all_properties a:visited,#all_properties a:hover{
+	color: #B38B01;
+	text-decoration: none;
+	border-bottom: 1px dashed;
+}
+
+.ui-dialog{
+	border:15px solid #FF9F80;
+	background-color: #FF9F80;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	padding: 0px;
+	font-family: "globersemibold","Lucida Grande",Tahoma,Arial,Verdana,sans-serif;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+	display: none;
+}
+.ui-dialog .ui-dialog-buttonpane {
+	background-color: #fff;
+	margin: 0px;
+	border: none;
+}
+.ui-dialog p,.ui-dialog form {
+	font-size: 100%;
+}
+.ui-dialog p strong{
+	font-family: "globerbold","Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+	font-weight: 400;
+}
+.ui-dialog form label{
+	font-weight: 400;
+	font-size: 100%;
+	font-family: "globersemibold","Lucida Grande",Tahoma,Arial,Verdana,sans-serif;
+}
+.ui-dialog .ui-dialog-titlebar {
+	-moz-border-radius: 13px 13px 0px 0px;
+	-webkit-border-radius: 13px 13px 0px 0px;
+	border-radius: 13px 13px 0px 0px;
+	text-align: center;
+	background: none;
+	background-color: #fff;
+	border: none;
+}
+.ui-dialog .ui-dialog-buttonpane{
+	-moz-border-radius: 0px 0px 13px 13px;
+	-webkit-border-radius: 0px 0px 13px 13px;
+	border-radius: 0px 0px 13px 13px;
+	background-color: #EDEDED;
+    border-top: 1px solid #CACACA;
+    padding-top: 10px;
+}
+
+#ui-dialog-title-dialog-message,#ui-dialog-title-dialog-warning,
+#ui-dialog-title-dialog-confirm-field-delete,#ui-dialog-title-dialog-insert-choices,
+#ui-dialog-title-dialog-insert-matrix-rows,#ui-dialog-title-dialog-insert-matrix-columns,
+#ui-dialog-title-dialog-delete-theme,#ui-dialog-title-dialog-confirm-form-delete,
+#ui-dialog-title-dialog-confirm-entry-delete,#ui-dialog-title-dialog-change-password,
+#ui-dialog-title-dialog-change-license,#ui-dialog-title-dialog-confirm-user-suspend,
+#ui-dialog-title-dialog-confirm-user-delete,#ui-dialog-title-dialog-share-theme,
+#ui-dialog-title-dialog-unshare-theme,#ui-dialog-title-dialog-delete-widget,
+#ui-dialog-title-dialog-share-report,#ui-dialog-title-dialog-unshare-report{	
+	color:#BD3D20;
+	font-size:150%;
+	font-weight:400;
+	text-align: center;
+}
+#dialog-message,#dialog-warning,#dialog-confirm-field-delete,
+#dialog-delete-theme,#dialog-confirm-form-delete,#dialog-confirm-entry-delete,
+#dialog-confirm-user-suspend,#dialog-confirm-user-delete,
+#dialog-share-theme,#dialog-unshare-theme,#dialog-delete-widget,
+#dialog-share-report,#dialog-unshare-report{
+	text-align: center;
+}
+#dialog-message img,#dialog-warning img,#dialog-confirm-field-delete img,
+#dialog-delete-theme img,#dialog-confirm-form-delete img,
+#dialog-confirm-entry-delete img,#dialog-confirm-user-suspend img,
+#dialog-confirm-user-delete img,#dialog-share-theme img,
+#dialog-unshare-theme img,#dialog-delete-widget img,
+#dialog-share-report img,#dialog-unshare-report img{
+	padding-top: 10px; padding-bottom: 25px;
+}
+
+.ui-dialog .ui-dialog-title{
+	float: none;
+	color:#BD3D20;
+	font-size:150%;
+	font-weight:400;
+	text-align: center;
+	margin: 0px;
+}
+.ui-state-highlight{
+	border: 1px dashed #FF9F80 !important;
+	height: 30px;
+}
+.ui-widget-overlay{
+	opacity: 0.7;
+	background: none;
+	background-color: #D1F2A5;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { 
+	float: left;
+	padding-left: 15px;
+}
+.ui-dialog .ui-dialog-content{
+	background-color: #fff;
+}
+.ui-menu .ui-menu-item a.ui-state-hover{
+	background-image: none;
+	background-color: #FFB8A1;
+	border: 1px solid white;
+}
+.ui-autocomplete{
+	font-family: 'Trebuchet MS', Arial, Helvetica;
+	font-size: 100%;
+
+	max-height: 200px;
+	overflow-y: auto;
+
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+	/* add padding to account for vertical scrollbar */
+	padding-right: 20px;
+}

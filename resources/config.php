@@ -5,16 +5,17 @@ MachForm Configuration File
 
 /** MySQL settings **/
 
-define('MF_DB_NAME', 'snapshot_cordmoving'); //The name of your database. Note that this database must exist before running installer.php
+define('MF_DB_NAME', 'wp_cordmoving'); //The name of your database. Note that this database must exist before running installer.php
 define('MF_DB_USER', 'cordmoving'); //Your database username
 define('MF_DB_PASSWORD', 'MEyp1dfzdVQpCPp3edOs'); //Your database users password
 define('MF_DB_HOST', '127.0.0.1'); //The hostname for your database
+
 
 /** YOU CAN LEAVE THE SETTINGS BELOW THIS LINE UNCHANGED **/
 
 /** Optional Settings **/
 /** All settings below this line are optionals, you can leave them as they are now **/
-define('MF_TABLE_PREFIX', 'main_ap_'); //The prefix for all machform tables
+define('MF_TABLE_PREFIX', 'ap_'); //The prefix for all machform tables
 
 //by default, deleting field from the form won't actually remove all the data within the table, so that we can manually recover it
 //by setting this value to 'true' the data will be removed completely, unrecoverable

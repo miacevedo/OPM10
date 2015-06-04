@@ -1,0 +1,3809 @@
+/**
+ * SqueezeBox - Expandable Lightbox
+ *
+ * Allows to open various content as modal,
+ * centered and animated box.
+ *
+ * @version		1.3
+ *
+ * @license		MIT-style license
+ * @author		Harald Kirschner <mail [at] digitarald.de>
+ * @author		Rouven Weßling <me [at] rouvenwessling.de>
+ * @copyright	Author
+ */
+
+#sbox-overlay {
+	position: absolute;
+	background-color: #000;
+	left: 0px;
+	top: 0px;
+}
+
+#sbox-window {
+	position: absolute;
+	background-color: #fff;
+	text-align: left;
+	overflow: visible;
+	padding: 10px;
+	/* invalid values, but looks smoother! */
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#sbox-window[aria-hidden=true],
+#sbox-overlay[aria-hidden=true] {
+	display: none;
+}
+
+#sbox-btn-close {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	right: -15px;
+	top: -15px;
+	background: url(../images/modal/closebox.png) no-repeat center;
+	border: none;
+}
+
+.sbox-loading #sbox-content {
+	background-image: url(../images/modal/spinner.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#sbox-content {
+	clear: both;
+	overflow: auto;
+	background-color: #fff;
+	height: 100%;
+	width: 100%;
+}
+
+.sbox-content-image#sbox-content {
+	overflow: visible;
+}
+
+#sbox-image {
+	display: block;
+}
+
+.sbox-content-image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.sbox-content-iframe#sbox-content {
+	overflow: visible;
+}
+
+/* Hides scrollbars */
+.body-overlayed {
+	overflow: hidden;
+}
+
+/* Hides flash (Firefox problem) and selects (IE) */
+.body-overlayed embed, .body-overlayed object, .body-overlayed select {
+	visibility: hidden;
+}
+
+#sbox-window embed, #sbox-window object, #sbox-window select {
+	visibility: visible;
+}
+
+/* Shadows */
+#sbox-window.shadow {
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sbox-bg {
+	position: absolute;
+	width: 33px;
+	height: 40px;
+}
+
+.sbox-bg-n {
+	left: 0;
+	top: -40px;
+	width: 100%;
+	background: url(../images/modal/bg_n.png) repeat-x;
+}
+.sbox-bg-ne {
+	right: -33px;
+	top: -40px;
+	background: url(../images/modal/bg_ne.png) no-repeat;
+}
+.sbox-bg-e {
+	right: -33px;
+	top: 0;
+	height: 100%;
+	background: url(../images/modal/bg_e.png) repeat-y;
+}
+.sbox-bg-se {
+	right: -33px;
+	bottom: -40px;
+	background: url(../images/modal/bg_se.png) no-repeat;
+}
+.sbox-bg-s {
+	left: 0;
+	bottom: -40px;
+	width: 100%;
+	background: url(../images/modal/bg_s.png) repeat-x;
+}
+.sbox-bg-sw {
+	left: -33px;
+	bottom: -40px;
+	background: url(../images/modal/bg_sw.png) no-repeat;
+}
+.sbox-bg-w {
+	left: -33px;
+	top: 0;
+	height: 100%;
+	background: url(../images/modal/bg_w.png) repeat-y;
+}
+.sbox-bg-nw {
+	left: -33px;
+	top: -40px;
+	background: url(../images/modal/bg_nw.png) no-repeat;
+}
+@-moz-document url-prefix() {
+    .body-overlayed {
+	overflow: visible;
+    }
+}
+@media (max-width: 979px) {
+	#sbox-window {
+		overflow: none;
+	}
+	#sbox-btn-close {
+		right: -10px;
+		top: -10px;
+	}
+}
+@media (max-device-width: 979px) {
+	#sbox-content {
+		-webkit-overflow-scrolling: touch;
+	}
+	#sbox-content.sbox-content-iframe {
+		overflow: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
+}
+
+
+/* k2 */
+/* @override http://localhost:8888/qs/unified/17/colourshift2/templates/jbcolourshift/css/k2.css */
+
+/*------------------------------------------------------------------
+Template:	JB ColourShift
+Version:	Joomla 1.5
+Zen Grid: 	v2.0
+Copyright:	Joomlabamboo
+Created:	December 2011
+------------------------------------------------------------------ 
+
+ General K2 Styles and Wrappers
+---------------------------------------------------*/
+
+.k2Header, .itemBody, .k2RatingBlock, .itemSocialSharing, .k2Links, .k2AuthorBlock, .k2Navigation, #k2Container.itemView , .k2AuthorLatest, .k2Comments, .k2ItemContainer { margin-bottom:20px; }
+.k2Links, .k2Navigation, #k2Container.itemView  { border-bottom-style: solid; border-bottom-width: 1px; padding: 0 0 10px; }
+.k2ItemList .k2ItemView { border-bottom: 4px solid #f2f2f2; margin: 0 0 20px; padding: 0 0 20px; }
+
+.k2ItemContainer { border-bottom: 4px solid #f2f2f2; padding: 0 0 20px; position: relative; }
+
+/*Edit Link*/
+.k2ItemContainer .editLink { position: absolute; top: 0; right: 0; z-index: 10; }
+.k2ItemContainer .editLink a { background: transparent url(../../../images/M_images/edit.png) no-repeat scroll 0 0; width: 18px; height: 18px; text-indent: -9999em; display: block; }
+
+.k2Header { border-bottom: 4px solid #f2f2f2; padding: 0 0 10px; }
+.catItemView .k2Header { width: 85%; float: right; }
+.k2Header .separator { color: #DDDDDD; padding: 0 10px; }
+
+/*Title*/
+.k2Title.icons { padding:0 140px 0 0; }
+.k2Title .featured { background-color: #e8e8e8; font-family: arial; font-size: 35%; font-weight: normal; right: 0; padding: 6px 5px; position: absolute; text-transform: uppercase; top: -10px; line-height: 1; border-bottom-style: solid; border-bottom-width: 1px; color: #FFFFFF; }
+.k2Title { margin: 0 0 10px 0; position: relative; }
+
+/*Date*/
+.createDate, .k2Category, .ItemCommentsLink { display: inline; font-size: 90%; line-height: 2; }
+
+/*Toolbar*/
+.k2Toolbar ul li a:hover, .k2Toolbar ul li span:hover { background-position:-0 -20px; }
+.k2Toolbar ul li { float: right; }
+.k2Toolbar ul li a span, .k2Toolbar ul li span span { background:none; }
+.k2Toolbar ul li a, .k2Toolbar ul li span { background: transparent url(../images/sprite.png) no-repeat scroll 0 0; height: 20px; width: 20px; float: right; text-indent: -9999em; display: block; }
+.k2Toolbar ul li .k2TextResizerTitle { display:none; }
+.k2Toolbar ul li #fontDecrease:hover { background-position:-120px -20px; }
+.k2Toolbar ul li #fontDecrease { background-position:-120px 0; }
+.k2Toolbar ul li #fontIncrease:hover { background-position:-100px -20px; }
+.k2Toolbar ul li #fontIncrease { background-position:-100px 0; }
+.k2Toolbar ul li .k2PrintLink:hover { background-position:-20px -20px; }
+.k2Toolbar ul li .k2PrintLink { background-position:-20px 0; }
+.k2Toolbar ul { list-style: none; margin: 0; padding: 0; }
+.k2Toolbar { position: absolute; top: 0; right: 0; min-width: 130px; float: right; }
+
+/*Rating*/
+.k2RatingBlock span { display: block; clear: both; }
+.k2RatingBlock .itemRatingForm .formLogLoading { background: url(../html/com_k2/templates/colourshift/images/system/loading.gif) no-repeat left center; height: 25px; padding: 0 0 0 20px; }
+.k2RatingBlock .itemRatingForm .k2RatingList li a:hover, .k2RatingBlock .itemRatingForm .k2RatingList li .itemCurrentRating:hover { background:transparent url(../html/com_k2/templates/colourshift/images/system/transparent_star.gif) left -1000px repeat-x; }
+.k2RatingBlock .itemRatingForm .k2RatingList li a, .k2RatingBlock .itemRatingForm .k2RatingList li .itemCurrentRating { position: absolute; top: 0; left: 0; text-indent: -1000px; height: 25px; line-height: 25px; outline: none; overflow: hidden; border: none; cursor: pointer; }
+.k2RatingBlock .itemRatingForm .k2RatingList li a:hover { background-position:left bottom; }
+.k2RatingBlock .itemRatingForm .k2RatingList li a.one-star { width: 20%; z-index: 6; }
+.k2RatingBlock .itemRatingForm .k2RatingList li a.two-stars { width: 40%; z-index: 5; }
+.k2RatingBlock .itemRatingForm .k2RatingList li a.three-stars { width: 60%; z-index: 4; }
+.k2RatingBlock .itemRatingForm .k2RatingList li a.four-stars { width: 80%; z-index: 3; }
+.k2RatingBlock .itemRatingForm .k2RatingList li a.five-stars { width: 100%; z-index: 2; }
+.k2RatingBlock .itemRatingForm .k2RatingList li .itemCurrentRating { z-index: 1; background-position: 0 center; margin: 0; padding: 0; }
+.k2RatingBlock .itemRatingForm .k2RatingList li { display: inline; background: none; padding: 0; }
+.k2RatingBlock .itemRatingForm .k2RatingList { background: transparent url(../html/com_k2/templates/colourshift/images/system/transparent_star.gif) left -1000px repeat-x; position: relative; float: left; width: 125px; height: 25px; overflow: hidden; list-style: none; margin: 0; padding: 0; background-position: left top; }
+.k2RatingBlock .itemRatingForm .itemRatingLog { font-size: 11px; margin: 0; padding: 0 0 0 4px; float: left; }
+.k2RatingBlock .itemRatingForm { display: block; vertical-align: middle; line-height: 25px; float: left; }
+.k2RatingBlock span.siteRoot { display:none; }
+.k2RatingBlock { font-size:90%; float: left; }
+
+/*ReadMore*/
+div.k2ReadMore { float: right; }
+
+/*Hits*/
+.k2Hits { float: left; display: block; font-size: 90%; }
+
+/*Modified Date*/
+.k2DateModified { display: block; font-size: 90%; font-style: italic; text-align: right; float: right }
+.k2ItemList .k2DateModified { border: 0 none; padding: 0; margin: 0; }
+
+/*Social Sharing*/
+.itemSocialSharing .itemTwitterButton, .itemSocialSharing .itemFacebookButton, .itemSocialSharing .itemGooglePlusOneButton { width: 33%; float: left; }
+
+/*Links*/
+.k2Links .k2HitsTwitter, .k2Links .k2HitsBlock { font-size:90%; }
+.k2ItemList .k2Links { border:0 none; }
+
+/*Tags*/
+.k2TagsBlock { font-size: 90%; font-style: italic; line-height: 2; }
+.k2TagsBlock span { font-weight:bold; }
+.k2TagsBlock .k2Tags li { display: inline; padding: 0 3px; text-align: center; }
+.k2TagsBlock .k2Tags { margin: 0; padding: 0; list-style: none; display: inline; }
+
+/*Author*/
+.k2AuthorAvatar { float: left; margin: 0 3% 20px 0; width: 12%; height: auto; -moz-box-shadow: 4px 4px 1px #cccccc; -webkit-box-shadow: 4px 4px 1px #cccccc; box-shadow: 4px 4px 1px #cccccc; }
+.k2AuthorLatest ul li, .k2Related ul li{ padding:0 3px; }
+.k2AuthorLatest ul, .k2Related ul { list-style: none; margin: 0; padding: 0; line-height: 2.5; }
+
+/*Navigation*/
+.k2Navigation .k2NavigationTitle { display: block; font-weight: bold; }
+.k2Navigation .k2Previous { float:left; }
+.k2Navigation .k2Next { float:right; }
+
+/*Comments*/
+.k2Comments label { padding-top:10px; }
+.k2Comments input { width:96%; }
+
+/*Font Resized*/
+.smallerFontSize { font-size: 100%; line-height: inherit; }
+.largerFontSize { font-size: 150%; line-height: 140%; }
+
+/*Feed Icon*/
+.k2FeedIcon a { background: transparent url(../html/com_k2/templates/colourshift/images/fugue/feed.png) no-repeat scroll 0 0; width: 16px; height: 16px; text-indent: -9999em; display: block; float: right; }
+
+/*Comment layout*/
+span.commentLink a {
+float: right; 
+}
+
+ul.k2CommentsList {
+margin: 0 0 30px ;
+}
+
+ul.k2CommentsList li {
+list-style-type: none;margin-bottom: 30px;padding: 8px 0;
+}
+
+ul.k2CommentsList li img {
+float: left;padding: 4px;border: 1px solid #ddd;margin-right: 20px;
+}
+
+
+ul.k2CommentsList span.commentDate,span.commentAuthorName  {
+font-style: italic;color: #999;font-size: 90%;margin-left: 20px;
+}
+
+ul.k2CommentsList span.commentDate {
+margin-left: 0;
+}
+
+span.commentAuthorName {
+clear: both;;
+}
+/* BASE */
+/* @override 
+	http://localhost:8888/qs/unified/17/Platform/media/zengridframework/css/base.css
+	http://localhost:8888/qs/unified/Responsive/media/zengridframework/css/base.css
+*/
+
+/**
+ * @package		Joomla Bamboo Zen Grid Framework
+ * @Type        Core CSS
+ * @version		v2.0
+ * @author		Joomlabamboo http://www.joomlabamboo.com
+ * @copyright 	Copyright (C) 2007 - 2010 Joomla Bamboo
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ */
+ 
+
+
+/*------------------------------------*\
+	RESET
+\*------------------------------------*/
+html,body,div,span,applet,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,
+del,dfn,em,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,
+b,u,i,center,
+dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,
+article,aside,canvas,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,summary,
+time,mark,audio,video{
+	margin:0;
+	padding:0;
+}
+article,aside,details,figcaption,figure,footer,
+header,hgroup,menu,nav,section{
+	display: block;
+}
+
+table{
+	border-collapse:collapse;
+	border-spacing:0
+}
+fieldset,img{  
+	border:0;
+}
+address,caption,cite,dfn,th,var{
+	font-style:normal;
+	font-weight:normal;
+}
+caption,th{
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6{
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after{
+	content:'';
+}
+abbr,acronym{
+	border:0;
+}
+
+dl dd {
+margin: 0;
+}
+/*------------------------------------*\
+	Joomla columns
+\*------------------------------------*/
+.blog {float: left;width: 100%;}
+.column1.cols2,.cols-2 .column-1 {width: 48%;float: left;}
+.column2.cols2,.cols-2 .column-2  {width: 48%;float:right;display: inline;}
+.column1.cols3,.column2.cols3,.cols-3 .column-1,.cols-3 .column-2  {width: 31%;float: left;margin-right: 3.5%;display: inline;}
+.column3.cols3,.cols-3 .column-3 {width: 31%;float:right;display: inline;}
+.column1.cols4,.column2.cols4,.column3.cols4,.cols-4 .column-1,.cols-4 .column-2,.cols-4 .column-3 {width: 23%;float: left;margin-right: 2.6%;display: inline;}
+.column4.cols4,.cols-4 .column-4 {width: 23%;float:right;display: inline;}
+.column1.cols5,.column2.cols5,.column3.cols5,.column4.cols5,.cols-5 .column-1,.cols-5 .column-2,.cols-5 .column-3,.cols-5 .column-4 {width: 18%;float: left;margin-right: 2.5%;display: inline;}
+.column5.cols5,.cols-5 .column-5 {width: 18%;float:right;display: inline;}
+.article_row {clear: both;width: 100%;float: left;padding: 0px 0 20px;margin-bottom: 20px}
+.cols1,.items-row {clear: both}
+
+
+
+/*------------------------------------*\
+	MAIN
+\*------------------------------------*/
+html{
+	overflow-y:scroll; /* Force scrollbars 100% of the time */
+	font-size:100%;
+	line-height:1.5;
+	color:#333;
+}
+body{
+	min-height:100%;
+}
+
+
+/*------------------------------------*\
+	Some additions to layouts
+\*------------------------------------*/
+#belowmain {
+margin-top: 30px;
+float: left;
+width: 100%;
+}
+
+/* Margin above the above div*/
+#above {
+margin-top: 20px;
+}
+
+/* Clear the below div */
+#below {clear: both;}
+
+.jbintrotext {
+clear: both;float: left;width: 100%;
+}
+
+.clear {
+clear: both;
+}
+
+#messageswrap .container {
+padding: 0;
+}
+
+
+/* Sidebar and some split menu stuff
+-----------------------------------------------------------------------------*/
+.sidebar ul {
+margin: 0;
+}
+
+.sidebar ul li {
+list-style-type: none;margin: 0
+}
+
+.sidebar ul li {
+padding: 0;
+}
+
+.sidebar ul li li {
+font-size: 90%;padding: 0 0 4px;
+}
+
+.sidebar ul li li:last-child {
+border-bottom: 0;padding: 0;
+}
+.sidebar ul li a,.sidebar ul li span.mainlevel span {
+padding: 4px 0;
+}
+
+.sidebar ul li a,.sidebar ul li span.mainlevel span  {
+display: block;
+}
+.sidebar ul li a:hover {}
+
+.sidebar ul li#current {}
+
+.sidebar ul ul li:last-child {
+margin-bottom: 10px;
+}
+
+
+
+/*------------------------------------*\
+	TABLES
+\*------------------------------------*/
+/*
+Unfortunately, and somewhat obviously, tables don’t fit the baseline all too well. Perhaps in a later version...
+*/
+table{
+	margin-bottom:1.5em;
+	width:100%;
+	max-width:100%;
+}
+thead tr:last-of-type th{
+	/* Thicker border on the table-headers of the last row in the table head */
+	border-bottom-width:2px;
+}
+tbody th{
+	/* Thicker right border on table-headers in the table body */
+	border-right-width:2px;
+}
+th:empty{
+	/* Hide the borders on any empty table-headers */
+	border:none;
+}
+th,td{
+	vertical-align:top;
+	padding:0.75em;
+
+}
+th{
+	font-weight:bold;
+	text-align:center
+}
+table [colspan]{
+	/* This looks lovely, trust me... */
+	text-align:center;
+}
+table [rowspan]{
+	/* ...as does this. */
+	vertical-align:middle;
+}
+
+
+
+/*
+Resets on the Joomla pagenav
+*/
+
+table.pagenav th,table.pagenav  td {
+border: 0;
+}
+
+table.pagenav th.pagenav_prev  {
+text-align: left;
+}
+
+table.pagenav th.pagenav_next  {
+text-align: right;
+}
+
+
+
+
+/*
+Joomla Table of Content
+*/
+
+table.contenttoc {
+float: right;width: 30%;margin-left: 20px;background: #f9f9f9;border: 1px solid #eee
+}
+
+table.contenttoc tbody {
+padding: 10px
+}
+
+table.contenttoc tr th,table.contenttoc tr td {
+border: 0;padding:6px 0;line-height: 1em;color: #999;text-align: center;font-style: italic;
+}
+
+table.contenttoc a.toclink.active {
+color: #999;
+}
+.pagenavcounter {
+font-style: italic;color: #999;float: right;margin: 0 0 10px 10px;clear: both;
+}
+
+
+.items-more {
+clear: both;
+}
+
+
+
+.blog {
+position: relative;
+}
+
+/* Edit Icon */
+span.hasTip {
+position: absolute;right: 0;z-index: 100;
+}
+
+
+
+/* Social Icons */
+
+.zenright {
+height:50px;
+width:500px;
+position:absolute;
+top:150px;
+z-index:15000;
+text-align: right;
+}
+
+
+.zenleft {float: left;text-align: left;}
+
+
+.zencenter {float: none;margin: 0 auto;text-align: center;}
+
+
+#socialicons ul li {
+list-style-type: none;float: left;margin-left: 0px;
+}
+
+#footer #socialicons {
+clear: both;margin-top: 20px; 
+}
+
+#socialicons.zencenter ul  {
+display:inline-block;
+	float:none;padding: 0 10px;
+} 
+
+/*
+HTML Overrides
+*/
+
+.jbSection,.jbCategory,.jbFrontPage {
+margin-bottom:3em;clear: both;float: left;width: 100%;
+}
+
+
+
+.jbMeta {
+margin-bottom: 1em;
+}
+
+
+/*
+Pagination
+*/
+ul.pagination, ul.pagenav, ul.page-numbers {
+margin: 0;
+}
+ul.pagination li, ul.pagenav li, ul.page-numbers li {
+list-style-type: none;margin: 0 20px 0 0;float: left; font-weight: bold;
+}
+
+ul.pagenav li.pagenav-next {
+float: right;margin: 0;
+}
+
+p.counter {
+font-style: italic;color: #999;clear: both;
+}
+
+
+/*
+Blog view more links
+*/
+.blog_more ul {
+margin: 0 0 30px;
+}
+.blog_more ul li {
+list-style-type: none;margin: 0;padding: 4px 0;border-bottom: 1px solid #eee;
+}
+
+
+#bottomdebug {
+width: 90%;margin: 0 auto;
+}
+
+/* =============================================================================
+   Back to Top
+   ========================================================================== */
+ 
+
+#toTop {position: fixed;right: 20px;bottom: 20px;cursor:pointer;font-size: 90%;}
+
+
+/* =============================================================================
+   Joomla general.css
+   ========================================================================== */
+
+
+/* Form validation */
+
+label.invalid { color: #ff0000; }
+
+/* Buttons */
+#editor-xtd-buttons {
+	padding: 5px;
+}
+
+.button2-left,
+.button2-right,
+.button2-left div,
+.button2-right div {
+	float: left;
+}
+
+.button2-left a,
+.button2-right a,
+.button2-left span,
+.button2-right span {
+	display: block;
+	height: 22px;
+	float: left;
+	line-height: 22px;
+	font-size: 11px;
+	color: #666;
+	cursor: pointer;
+}
+
+.button2-left span,
+.button2-right span {
+	cursor: default;
+	color: #999;
+}
+
+.button2-left .page a,
+.button2-right .page a,
+.button2-left .page span,
+.button2-right .page span {
+	padding: 0 6px;
+}
+
+.page span {
+	color: #000;
+	font-weight: bold;
+}
+
+
+.button2-left a:hover,
+.button2-right a:hover {
+	text-decoration: none;
+	color: #0B55C4;
+}
+
+.button2-left a,
+.button2-left span {
+	padding: 0 24px 0 6px;
+}
+
+.button2-right a,
+.button2-right span {
+	padding: 0 6px 0 24px;
+}
+
+.button2-left {
+	background: url(../images/j_button2_left.png) no-repeat;
+	float: left;
+	margin-left: 5px;
+}
+
+.button2-right {
+	background: url(../images/j_button2_right.png) 100% 0 no-repeat;
+	float: left;
+	margin-left: 5px;
+}
+
+.button2-left .image {
+	background: url(../images/j_button2_image.png) 100% 0 no-repeat;
+}
+
+.button2-left .readmore {
+	background: url(../images/j_button2_readmore.png) 100% 0 no-repeat;
+}
+
+.button2-left .pagebreak {
+	background: url(../images/j_button2_pagebreak.png) 100% 0 no-repeat;
+}
+
+.button2-left .blank {
+	background: url(../images/j_button2_blank.png) 100% 0 no-repeat;
+}
+
+/* Tooltips */
+.tool-tip {
+   float: left;
+   background: #ffc;
+   border: 1px solid #D4D5AA;
+   padding: 5px;
+   max-width: 200px;
+}
+ 
+.tool-title {
+   padding: 0;
+   margin: 0;
+   font-size: 100%;
+   font-weight: bold;
+   margin-top: -15px;
+   padding-top: 15px;
+   padding-bottom: 5px;
+   background: url(../images/selector-arrow.png) no-repeat;
+}
+ 
+.tool-text {
+   font-size: 100%;
+   margin: 0;
+}
+
+
+/* Tooltips */
+div.tooltip {
+	float: left;
+	background: #ffc;
+	border: 1px solid #D4D5AA;
+	padding: 5px;
+	max-width: 200px;
+	z-index:13000;
+}
+
+div.tooltip h4 {
+	padding: 0;
+	margin: 0;
+	font-size: 95%;
+	font-weight: bold;
+	margin-top: -15px;
+	padding-top: 15px;
+	padding-bottom: 5px;
+	background: url(../images/selector-arrow.png) no-repeat;
+}
+
+div.tooltip p {
+	font-size: 90%;
+	margin: 0;
+}
+
+/* Caption fixes */
+.img_caption.left {
+	float: left;
+	margin-right: 1em;
+}
+
+.img_caption.right {
+	float: right;
+	margin-left: 1em;
+}
+
+.img_caption.left p {
+	clear: left;
+	text-align: center;
+}
+
+.img_caption.right p {
+	clear: right;
+	text-align: center;
+}
+
+.img_caption  {
+text-align: center!important;
+}
+
+.img_caption.none {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.caption.left {
+	float: left;
+	margin-right: 1em;
+}
+
+.caption.right {
+	float: right;
+	margin-left: 1em;
+}
+
+.caption.left p {
+	clear: left;
+	text-align: center;
+}
+
+.caption.right p {
+	clear: right;
+	text-align: center;
+}
+
+.caption.none {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.caption  {
+	text-align: center!important;
+}
+
+/* Calendar */
+a img.calendar {
+	width: 16px;
+	height: 16px;
+	margin-left: 3px;
+	background: url(../images/calendar.png) no-repeat;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+
+
+
+/* =============================================================================
+   Joomla system.css
+   ========================================================================== */
+
+
+
+/* OpenID icon style */
+input.system-openid, input.com-system-openid {
+   background: url(http://openid.net/images/login-bg.gif) no-repeat;
+   background-color: #fff;
+   background-position: 0 50%;
+   color: #000;
+   padding-left: 18px;
+}
+
+
+/* Unpublished */
+.system-unpublished {
+background: #e8edf1;
+border-top: 4px solid #c4d3df;
+border-bottom: 4px solid #c4d3df;
+}
+
+/* System Messages */
+#system-message    { margin-bottom: 10px; padding: 0;}
+#system-message dt { font-weight: bold; }
+#system-message dd { margin: 0; font-weight: bold; text-indent: 30px; }
+#system-message dd ul { color: #0055BB; margin-bottom: 10px; list-style: none; padding: 10px; border-top: 3px solid #84A7DB; border-bottom: 3px solid #84A7DB;}
+
+/* System Standard Messages */
+#system-message dt.message { display: none; }
+#system-message dd.message {  }
+
+/* System Error Messages */
+#system-message dt.error { display: none; }
+#system-message dd.error ul { color: #c00; background-color: #E6C0C0; border-top: 3px solid #DE7A7B; border-bottom: 3px solid #DE7A7B;}
+
+/* System Notice Messages */
+#system-message dt.notice { display: none; }
+#system-message dd.notice ul { color: #c00; background: #EFE7B8; border-top: 3px solid #F0DC7E; border-bottom: 3px solid #F0DC7E;}
+
+/* Debug */
+#system-debug     { color: #ccc; background-color: #fff; padding: 10px; margin: 10px; }
+#system-debug div { font-size: 11px;}
+
+/* GRID */
+/**
+ * @package		Joomla Bamboo Zen Grid Framework
+ * @Type        Core CSS
+ * @version		v2.0
+ * @author		Joomlabamboo http://www.joomlabamboo.com
+ * @copyright 	Copyright (C) 2007 - 2010 Joomla Bamboo
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ */
+ 
+/* Grid Layout - Can remove in zgf v2
+-----------------------------------------------------------------------------*/
+.container {
+width: 960px;
+}
+
+body.center .container {margin: 0 auto;}
+body.left .container {float: left;}
+body.right .container {float: right;}
+
+.row {
+width: 94%;
+margin: 0 auto;
+overflow: hidden;
+}
+
+.container.left .row,.container.right .row {
+margin: 0;
+}
+
+.grid_one,.grid_two,.grid_three,.grid_four,.grid_five,.grid_six,.grid_seven,.grid_eight,.grid_nine,.grid_ten,.grid_eleven,.grid_3,.grid_4,.grid_2,.grid_1
+{
+margin-right: 3.8%;
+*margin-right: 3.7%; /* Targeting IE7 only*/
+float: left;
+position: relative;
+min-height: 1px
+}
+
+.grid_one,.moduletable.noresize .grid_one
+{
+width: 4.85%
+}
+
+.grid_two,.moduletable.noresize .grid_two
+{
+width: 13.45%
+}
+
+.grid_three,.grid_4,.moduletable.noresize .grid_three,.moduletable.noresize .grid_4
+{
+width: 22.05% 
+}
+
+.grid_four,.grid_3,.moduletable.noresize .grid_four,.moduletable.noresize .grid_4
+{
+width: 30.75%
+}
+
+.grid_five,.moduletable.noresize .grid_five
+{
+width: 39.45%
+}
+
+.grid_six,.grid_2,.moduletable.noresize .grid_six,.moduletable.noresize .grid_2
+{
+width: 48%
+}
+
+.grid_seven,.moduletable.noresize .grid_seven
+{
+width: 56.75%
+}
+
+.grid_eight,.moduletable.noresize .grid_eight
+{
+width: 65.4%
+}
+
+.grid_nine,.moduletable.noresize .grid_nine
+{
+width: 74.05%
+}
+
+.grid_ten,.moduletable.noresize .grid_ten
+{
+width: 82.7%
+}
+
+.grid_eleven,.moduletable.noresize .grid_eleven
+{
+width: 91.35%
+}
+
+.grid_twelve,grid_,.grid_1,.moduletable.noresize .grid_twelve,.moduletable.noresize .grid_1
+{
+width: 100%;
+float: left
+}
+
+
+
+.zenlast,#midCol.twoL,#midCol.threeLC,.jblast  {
+float: right;margin: 0;
+} 
+
+#mobilemenu {display: none;}
+
+
+.onecols_push {left: 8.85%;}
+.twocols_push {left: 17.25%;}
+.threecols_push {left: 25.85%;}
+.fourcols_push {left: 60.55%;}
+.fivecols_push {left: 43.25%}
+.sixcols_push {left: 51.80%;}
+.sevencols_push {left: 60.55%;}
+.eightcols_push {left: 69.20%;}
+.ninecols_push {left: 77.85%;}
+.tencols_push {left: 86.5%;}
+.elevencols_push {left: 94.85%}
+
+.onecols_pull{left: -8.85%;}
+.twocols_pull{left: -17.25%;}
+.threecols_pull{left: -25.85%;}
+.fourcols_pull{left: -34.55%;}
+.fivecols_pull{left: -43.25%;}
+.sixcols_pull {left: -51%;}
+.sevencols_pull{left: -60.55%;}
+.eightcols_pull{left: -69.20%;}
+.ninecols_pull{left: -77.85%;}
+.tencols_pull{left: -86.25%;}
+.elevencols_pull{left: -94.85%;}
+/* TYPE */
+/**
+ * @package		Joomla Bamboo Zen Grid Framework
+ * @Type        Core CSS
+ * @version		v2.0
+ * @author		Joomlabamboo http://www.joomlabamboo.com
+ * @copyright 	Copyright (C) 2007 - 2010 Joomla Bamboo
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ */
+
+
+/*------------------------------------*\
+	TYPE
+\*------------------------------------*/
+/*--- HEADINGS ---*/
+h1,.componentheading{
+	font-size:2em;			/* 32px */
+	margin-bottom:0.75em;	/* 24px */
+	line-height:1.5;		/* 48px */
+}
+h2{
+	font-size:1.5em;		/* 24px */
+	margin-bottom:1em;		/* 24px */
+	line-height:1.5;			/* 24px */
+}
+h3{
+	font-size:1.25em;		/* 20px */
+	margin-bottom:1.2em;	/* 24px */
+	line-height:1.2;		/* 24px */
+}
+h4{
+	font-size:1.125em;		/* 18px */
+	margin-bottom:1.333em;	/* 24px */
+	line-height:1.333;		/* 24px */
+}
+h5{
+	font-weight:bold;
+}
+h5,
+h6{
+	font-size:1em;			/* 16px */
+	margin-bottom:1.5em;	/* 24px */
+	line-height:1.5;		/* 24px */
+}
+
+
+
+h3.centered {
+width: 70%;margin: 20px auto;clear: both;
+font-style: italic;line-height: 2em;font-variant: small-caps;letter-spacing:0.1em;
+}
+
+h3.centered:first-letter {
+font-size: 3.75em;padding: 0.30em 10px 0 0 ;float: left;
+}
+
+/*--- PARAGRAPHS ---*/
+p,
+address{
+	font-size: 1.2em;
+	margin-bottom:1.5em;
+	line-height: 1.5em;
+}
+ 
+
+/*--- LINKS ---*/
+/*
+Say no to negative hovers: http://csswizardry.com/2011/05/on-negative-hovers/
+A negative hover is one whose appearance is subtracted from on hover rather than added to.
+*/
+a{
+	text-decoration:none;
+}
+a:visited{
+	opacity:0.8; /* A bit basic, but it’s a bare minumum... */
+}
+a:hover{
+	text-decoration:underline;
+}
+a:active,
+a:focus{
+	/* Give clicked links a depressed effect. */
+	position:relative;
+	top:1px;
+}
+
+
+
+/*--- Images ---*/
+
+img {
+max-width: 100%;
+height: auto;
+}
+
+.border {
+box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+-moz-box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+background: #fff;padding: 4px;
+max-width: 98%;margin-bottom: 20px;
+}
+/*
+.video embed,
+.video object,
+.video iframe {
+	width: 100%;
+	height: auto;
+}
+*/
+
+.floatleft {
+float: left;margin:0 20px 20px 0;
+}
+
+.floatright {
+float: right;margin: 0 0 20px 20px;
+}
+/*--- LISTS ---*/
+ul,
+ol{
+	margin:0 0 1.5em 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul{
+	/* Let’s take care of lists in lists */
+	margin:0 0 0 20px;
+}
+
+/*
+A numbered list is NOT the same as an ordered one.
+Use this class when you want a list to be numbered but it has no order.
+See http://jsfiddle.net/csswizardry/sdrth/
+*/
+ul.numbered{
+	list-style:decimal outside;
+}
+dl{
+	margin-bottom:1.5em;
+}
+dt{
+	font-weight:bold;
+}
+
+dd{
+	margin-left:60px;
+}
+
+/*--- QUOTES ---*/
+blockquote{
+
+	font-size: 2em;
+	font-family: georgia;
+	font-style: italic;
+	margin: 1em 0;
+}
+blockquote b,
+blockquote .source{
+	/* Mark the source up with either a <b> or another element of your choice with a class of source. */
+	display:block;
+	text-indent:0;
+}
+
+
+
+/*--- GENERAL ---*/
+q,
+i,
+em,
+cite{
+	font-style:italic;
+	font-weight:inherit;
+}
+b,
+strong{
+	font-weight:bold;
+	font-style:inherit;
+}
+mark											{ background: rgba(255, 255, 0, 0.4); padding: 0 .25em; }
+
+s,
+del{
+	text-decoration:line-through;
+}
+
+
+ins	{ color: #f00; }
+small, sup, sub	{ font-size: 80%; }
+
+abbr, acronym									{ font-size: 85%; text-transform: uppercase; letter-spacing: .1em; }
+
+abbr[title], acronym[title], dfn[title]			{ border-bottom: 1px dotted black; cursor: help; }
+sup, sub										{ line-height: 0; }
+sup												{ vertical-align: super; }
+sub												{ vertical-align: sub; }
+
+/*--- CODE ---*/
+pre, code {
+	overflow-x: auto;max-height: 200px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background: #eee;
+	border: 1px solid #ddd;display: block;
+	font-family: monaco, courier, "courier new", monospace;
+	font-size: 11px;
+	margin: 0;
+	padding: 9px;
+	white-space: pre;
+}
+
+
+
+/* notices
+-------------------------------------------------------------- */
+
+.notice,.error,.success {
+	margin: 0 0 17px 0; 
+	padding: 0 4px;
+	font-size: 11px;
+	line-height: 18px;
+}
+
+.notice {
+	background: #FFF6BF; 
+	color: #514721; 
+	border-bottom: 1px solid #FFD324;
+}
+
+.error,.invalid {
+	background: #FBE3E4; 
+	color: #8a1f11; 
+	border-bottom: 1px solid #FBC2C4;
+}
+
+.success {
+	background: #E6EFC2; 
+	color: #264409; 
+	border-bottom: 1px solid #C6D880;	
+}
+
+.inputbox.invalid {
+border: 1px solid #FBC2C4;
+}
+label.invalid {
+color: inherit;background: none;border: 0;
+}
+
+
+
+/* Page Layouts
+-------------------------------------------------------------- */
+.box {
+padding: 10px;border: 1px solid #ddd;background: #fafafa;margin-bottom: 20px;
+}
+
+.shortintro em {
+color: #bbb;text-transform: lowercase;
+}
+.shortintro h2{
+margin-top: -15px;text-transform: uppercase;word-spacing: 0.2em;font-size: 2em;margin-bottom: 30px;
+}
+/* FORMS */
+/**
+ * @package		Joomla Bamboo Zen Grid Framework
+ * @Type        Core CSS
+ * @version		v2.0
+ * @author		Joomlabamboo http://www.joomlabamboo.com
+ * @copyright 	Copyright (C) 2007 - 2010 Joomla Bamboo
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ */
+ 
+
+
+/*------------------------------------*\
+	FORMS
+\*------------------------------------*/
+
+
+fieldset{
+	margin:1.5em 0;
+	max-width: 100%;
+}
+
+#josForm th,#josForm td{
+border: 0;
+}
+fieldset div {
+margin-bottom: 1.5em;
+}
+
+fieldset legend {
+font-weight: bold;font-size: 1.2em;padding-bottom: 0.67em;
+}
+label{
+	display: block;
+	cursor:pointer;
+}
+
+input,select,
+textarea{
+	font-family:inherit;
+	font-size:1em;
+	line-height:1.5;
+	background: #fff;
+}
+
+input:hover {
+background: #eee;
+}
+
+input {width: 90%;}
+input.button {
+width: auto;
+}
+
+
+textarea {
+width: 96%;
+}
+
+
+/* Reset on remember button in Joomla forms */
+.contact label.copy,form.form-login label.remember,form#login .remember label {
+display: inline
+}
+
+form#login input#rem.inputbox {
+width: auto;
+}
+
+/* Reset on mod_login fieldset */
+form.form-login fieldset,form#login fieldset {
+border: 0;padding: 0;
+}
+
+form.josForm input {
+width: 70%;margin-right: 20px;
+}
+
+/* Reset on mod_login link */
+form.form-login a {
+display: block;
+}  
+
+form.form-login p {
+margin: 0;
+}
+
+.form-login .inputbox {
+width: 96%;
+}
+/* Reset on polls */
+.poll label {
+display: inline
+}
+
+.poll th {
+text-align: left;
+}
+
+.poll dd {
+margin: 0 0 30px;
+}
+
+.poll select { 
+clear: both;display: block;margin-bottom: 40px;
+}
+
+
+/* Reset on search forms */
+#searchpage fieldset {
+padding: 0;
+}
+
+.search label,.search input,.search_result label,.search_result input {
+display: inline;margin-right: 10px;width: auto;
+}
+
+#searchpage input#search_searchword.inputbox {
+width: 96%;margin: 0;
+}
+
+.results ol li {
+margin-bottom: 20px;padding-bottom: 20px
+}
+
+
+/* Joomla 1.7 Specific resets
+---------------------------------------------------*/
+
+form#member-registration label,form#user-registration label,form#member-profile label,.contact-form label {
+display: inline;
+}
+
+.profile dl dd,form#member-profile dl dd,form#member-registration dl dd,.contact-form dl dd {
+margin-bottom: 10px;
+}
+
+
+/* SUPERFISH */
+/**
+ * @package		Joomla Bamboo Zen Grid Framework
+ * @Type        Core CSS
+ * @version		v2.0
+ * @author		Joomlabamboo http://www.joomlabamboo.com
+ * @copyright 	Copyright (C) 2007 - 2010 Joomla Bamboo
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ */
+
+.navRow .row{
+overflow: visible;
+}
+#nav ul,.moduletable-superfish ul, 
+#nav ul *,.moduletable-superfish ul *,
+#nav ul.menu,.moduletable-superfish ul.menu  {
+	margin:			0; 
+	padding:		0;
+	list-style:		none;
+}
+
+
+#nav ul,
+.moduletable-superfish ul {
+	line-height:	1.0;
+	display:inline;
+}
+#nav ul ul,.moduletable-superfish ul ul {
+	position:		absolute;
+	top:			-999em;
+	width:			10em; /* left offset of submenus need to match (see below) */
+}
+#nav ul ul li,.moduletable-superfish ul ul li {
+	width:			100%;
+}
+
+#nav ul li:hover,.moduletable-superfish ul li:hover {
+	visibility:		inherit; /* fixes IE7 'sticky bug' */
+}
+
+#nav ul li,.moduletable-superfish ul li {
+	float:			left;
+	margin-right: 0 !important;
+}
+#nav ul a, .moduletable-superfish ul a,
+#nav span.separator, .moduletable-superfish span.separator,
+#nav span.mainlevel span
+ { 
+	display:		block;
+	padding: 		.75em 1em;
+	text-decoration:none;
+}
+#nav ul ul,.moduletable-superfish ul li:hover ul{
+	left:			10px;
+	top:			24px; /* match top ul list item height */
+	z-index:		99;
+}
+
+#nav ul.menu>li>ul{   visibility:hidden;} 
+
+
+#nav ul li li span.mainlevel span,#nav ul li li span.separator{ 
+display: block;padding: 8px 0 8px 20px
+}
+
+#nav.centered ul li li span.mainlevel span {
+padding: 0;text-indent: 0;
+}
+
+
+#nav ul li.sfHover ul ul,
+.moduletable-superfish ul.li.sfHover ul ul
+{top: -9px} 
+
+
+#nav ul ul li:hover li ul,.moduletable-superfish ul ul li:hover li ul,
+#nav ul ul li.sfHover li ul,.moduletable-superfish ul ul li.sfHover li ul {
+	top:			-999em;
+
+}
+
+#nav ul ul li li:hover ul,.moduletable-superfish  ul ul li li:hover ul,
+#nav ul ul li li.sfHover ul,.moduletable-superfish ul ul li li.sfHover ul {
+	left:			10em; /* match ul width */
+	top:			0;
+}
+
+#nav ul li li:hover li ul,.moduletable-superfish  ul ul li li:hover li ul,
+#nav ul li li.sfHover li ul,.moduletable-superfish  ul ul li li.sfHover li ul {
+	top:			-999em;
+	margin-top: -20px;
+}
+
+#nav ul li li li:hover ul,.moduletable-superfish  ul li li li:hover ul,
+#nav ul li li li.sfHover ul,.modueltable-superfish  ul li li li.sfHover ul {
+	left:			10em; /* match ul width */
+	top:			0;
+}
+
+
+/* Reset on sub level span sepaartor images */
+#nav li span.separator,.moduletable-superfish  li span.separator,
+#nav li.parent li span.separator,.moduletable-superfish li.parent li span.separator,
+#nav li.parent li.parent li span.separator,.moduletable-superfish  li.parent li.parent li span.separator
+ {background: none;}
+
+
+
+/* Parent separators */
+#nav li.parent span.separator,.moduletable-superfish  li.parent span.separator 
+ {cursor: pointer;padding-right: 20px;}
+
+
+/*** arrows **/
+#nav ul a.sf-with-ul,.moduletable-superfish  ul a.sf-with-ul {
+	min-width:		1px; /* trigger IE7 hasLayout so spans position accurately */
+}
+
+/*------------------------------------*\
+	Navigation Defaults
+\*------------------------------------*/
+
+
+/*
+Provides alignment for the nav.
+*/
+#nav.navleft ul{
+float: left;margin: 0;
+}
+
+/*
+Basic margin on #nav.navleft elements
+*/
+#nav.navleft a,#nav.navleft span.mainlevel span {
+padding: 0;margin-right: 20px;
+}
+
+/*
+Styling on parent elements
+*/
+#nav ul a.sf-with-ul,.moduletable-superfish  ul a.sf-with-ul {
+
+}
+
+/*
+Apply same styling to spans as the links
+*/
+#nav.navleft span.mainlevel span,
+#nav.navright span.mainlevel span{
+display: block;
+}
+
+
+/*
+Floats nav to the right
+*/
+#nav.right ul {
+float: right;
+}
+
+#nav.right a,#nav.right span.mainlevel span {
+margin-leftt: 20px;
+}
+
+
+/*
+Centered Nav
+*/
+#nav.centered{
+	text-align:center;margin-top: -8px;text-align:center;
+}
+
+#nav.centered ul {
+display:inline-block;
+list-style:none; 
+}
+
+* html #nav.centered ul { /* Target IE6 */
+display:inline;
+}
+*+html #nav.centered ul { /* Target IE7 */
+display:inline;
+}
+
+#nav.centered li{
+	display:inline;
+	padding:8px 0 0 10px;
+}
+
+#nav.centered li a {
+float: left;
+}
+
+
+#nav.centered li li,#nav.centered li li a{
+text-align: left;display: block;padding: 0px 4px 0px 0
+}
+
+#nav.centered span.centered { 
+float: left;
+}
+
+
+/*
+Basic resets on Nav and superfish list
+*/
+#nav li,.moduletable-superfish li {
+float: left;list-style-type: none;position: relative;
+}
+
+
+#nav ul li li:last-child a {border-bottom: 0;}
+#nav ul li li:first-child a {border-top: 0;}
+
+
+/* MODAL DEFAULT */
+/**
+ * @package		Joomla Bamboo Zen Grid Framework
+ * @Type        Core CSS
+ * @version		v2.0
+ * @author		Joomlabamboo http://www.joomlabamboo.com
+ * @copyright 	Copyright (C) 2007 - 2010 Joomla Bamboo
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ */
+ 
+
+
+/*------------------------------------*\
+	Panel
+\*------------------------------------*/
+/* Hidden Panel
+---------------------------------------------------*/
+#zenpaneltrigger {position: absolute;top: 0;right: 20px;z-index: 101}
+#zenpanel {display: none;position: absolute;z-index: 100;background: #fff;border: 1px solid #ddd;top: 100px !important;} 
+#zenpanelInner {padding: 30px 0;float: left;
+width: 90%;margin-left: 5%;
+}
+#zenoverlay {display: none;width: 100%;background: #f9f9f9;float: left;position: fixed;left: 0;top: 0;z-index: 99;height: 100%;}
+
+a#zenpanelopen.active,a#zenpanelclose {display: none;}
+a#zenpanelclose.active {display: block;}
+
+
+
+
+/* Hidden Panel Container
+---------------------------------------------------*/
+#zenpanel {z-index: 100;display: none;-webkit-box-shadow: 0px 0px 60px #ccc;-moz-box-shadow: 0px 0px 10px #ccc;box-shadow: 0px 0px 10px #ccc;-moz-border-radius: 5px;-khtml-border-radius: 5px;-webkit-border-radius: 5px;background: #eaeaea}
+/* FONTS */
+body,span.helvetica {font-family: sans-serif}
+
+h1,h2,h3,h4, h5,h6,.blockquote, .componentheading, .contentheading {font-family: helvetica; /* IS THERE A REASON WHY THEY USE GEORGIA? WHAT IS THIS the 90's? - font-family:  Georgia, Times, Times New Roman, serif */}
+
+#nav, .moduletable-superfish,.moduletable-menu  {font-family: sans-serif}
+
+#tagline {font-family: georgia}
+
+.moduleTitle h3 {font-family: helvetica} {font-family: helvetica}
+
+/* THEME */
+/* @override 
+	http://localhost:8888/qs/unified/colourshift2/templates/jbcolourshift/css/theme.css
+	http://localhost:8888/qs/unified/17/ColourShift2/templates/jbcolourshift/css/theme.css
+	http://localhost:8888/qs/unified/17/colourshift2/templates/jbcolourshift/css/theme.css
+*/
+
+/* ------------------------------------------------------------------
+Template:	JB ColourShift
+Version:	Joomla 1.5
+Zen Grid: 	v2.0
+Copyright:	Joomlabamboo
+Created:	December 2011
+------------------------------------------------------------------*/
+
+/* Body and Outer Wrapper
+-----------------------------------------------------------------------------*/
+body
+{
+	background-color:#fafafa;
+	position:relative;
+	color:#666
+}
+
+#navwrap,#bannerwrap,#mainwrap,#grid1wrap,#grid2wrap,#bottomrow,#footerwrap,#headerwrap
+{
+	margin:0 0 10px
+}
+
+/* Typography
+-----------------------------------------------------------------------------*/
+a
+{
+	text-decoration:none
+}
+
+img
+{
+	height:auto;
+	max-width:100%;
+	border:0
+}
+
+h1,h1 a,h2,h2 a,h3,h3 a,h4,h4 a,h5,h5 a,h6,h6 a
+{
+	color:#333;
+	line-height:1
+}
+
+h1
+{
+	font-size:210%;
+	font-weight:bold;
+}
+
+h2,.contentheading
+{
+	font-size:140%;
+	line-height:2em;
+	margin-bottom: 10px;
+}
+
+.cols3 .contentheading,.cols4 .contentheading {
+font-size: 1.3em
+}
+
+.cols3,.cols4,.cols5 {
+margin-bottom: 30px;
+}
+h3
+{
+	font-size:115%
+}
+
+.gallery-flickr ul
+{
+	list-style-type:none
+}
+
+#midCol,#leftCol,#rightCol,#centerCol
+{
+	padding-top:30px
+}
+
+
+
+.article_separator
+{
+	display:none
+}
+
+/* Top Row - For top1 to top4 positions
+-----------------------------------------------------------------------------*/
+#topwrap
+{
+	margin-top:30px
+}
+
+#top4 ul
+{
+	float:right
+}
+
+/* Header and Logo Row - For when logo is in the header row and for header1 to header4 positions
+-----------------------------------------------------------------------------*/
+ #headerwrap
+{
+	padding-top:50px
+}
+
+/* #headerwrap .row
+{
+	margin-bottom:50px
+} */
+
+#header4
+{
+	text-align:right
+}
+
+#headerwrap h3
+{
+	font-size:2em
+}
+
+#headerwrap .moduletable
+{
+	margin-top:25px
+}
+
+/* Logo Div and Tagline
+-----------------------------------------------------------------------------*/
+#logo a
+{
+	color:#333
+	
+}
+
+#logo h1 a,#logo h2 a
+{
+	padding-left:2px
+
+}
+
+#logo h1 a:hover,#logo h2 a:hover
+{
+	text-decoration:none
+}
+
+#logo h1 span,#logo h2 span
+{
+	border:0 none;
+	display:block;
+	float:left;
+	height:4px;
+	overflow:hidden;
+	margin:20px 0 0
+}
+
+
+
+#logo h1,#logo h2
+{
+	text-align:left;
+	color:#333;
+	margin:-20px 1% 0 0
+}
+
+/* Banner Row - For the banner position
+-----------------------------------------------------------------------------*/
+#bannerwrap .moduletable{
+
+padding-top: 0px;
+z-index: 500;
+}
+#bannerwrap .slideshow h2
+{
+	font-size:24px;
+	margin:0 0 10px
+}
+
+#bannerwrap .slideshow .slides
+{
+	position:relative
+}
+
+#bannerwrap .slideshow .zenmore a
+{
+	font-size:13px;
+	line-height:2;
+	padding:7px 15px
+}
+
+#bannerwrap .slideshow .zenmore
+{ 
+	text-align:right;
+	padding:20px 0 0
+}
+
+#bannerwrap .slideshow .slidenavdiscs
+{
+	position:relative
+}
+
+#bannerwrap .slideshow .slidenavdiscs .slidenav li
+{
+	width:15px;
+	height:15px;
+	border:1px solid #ddd;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	background-image:none;
+	background-color:#fff;
+	position:relative;
+	-pie-watch-ancestors:1px;
+	margin:0 10px 0 0
+}
+
+
+
+#bannerwrap .slideshow .slidenavdiscs .slidenav
+{
+	display:block;
+	margin:-20px 0 0 33%
+}
+
+#bannerwrap,#mainwrap
+{
+	background:transparent url(../images/bg.png) repeat-x scroll 0 100%
+}
+
+/* Tabbed Module - Bottom1 to bottom4 modules
+-----------------------------------------------------------------------------*/
+#tabwrap .row
+{
+	padding:20px 0 0
+}
+
+#jbtabbedArea
+{
+	width:100%;
+	float:left
+}
+
+ul.jbtabs
+{
+	padding-bottom:10px;
+	margin-left:0;
+	border-bottom:4px solid;
+	height:18px;
+	position:relative;
+	z-index:1;
+	margin-bottom:40px
+}
+
+#jbtabbedArea ul.jbtabs {
+background: none;
+}
+
+.jbtab_container
+{
+	clear:both
+}
+
+ul.jbtabs li
+{
+	float:left;
+	list-style-type:none;
+	margin:0;
+	padding:0
+}
+
+ul.jbtabs li a
+{
+
+	padding:12px 20px
+}
+
+ul.jbtabs li a:hover
+{
+	color:#333;
+	text-decoration:none
+}
+
+ul.jbtabs li.active a
+{
+	color:#333;
+
+	margin-top:2px;
+	position:relative;
+	z-index:2
+}
+
+.jbtabwidth1
+{
+	float:left;
+	width:100%
+}
+
+.jbtabwidth2 .moduletable
+{
+	float:left;
+	width:48%;
+	margin-right:2%
+}
+
+.jbtabwidth3 .moduletable
+{
+	float:left;
+	width:31%;
+	margin-right:2%
+}
+
+.jbtabwidth4 .moduletable
+{
+	float:left;
+	width:23%;
+	margin-right:2%
+}
+
+@media all and orientation  {
+	/* One pixel difference on firefox - this corrects that */
+ul.jbtabs
+	{
+		height:19px
+	}
+}
+
+/*  Stripes
+-----------------------------------------------------------------------------*/
+.stripe1,.stripe2,.stripe3,.stripe4,.stripe5,.stripe6
+{
+	width:16.64%
+}
+
+#nav ul li,.stripe1,.stripe2,.stripe3,.stripe4,.stripe5,.stripe6
+{
+	border-bottom-style:solid;
+	border-bottom-width:4px
+}
+
+#zenpanel span.stripe1,#zenpanel span.stripe2,#zenpanel span.stripe3,#zenpanel span.stripe4,#zenpanel span.stripe5,#zenpanel span.stripe6 {
+float: left;height: 8px;border: 0;
+}
+
+
+/* Menu
+-----------------------------------------------------------------------------*/
+#nav ul.menu > li {
+width: 16.66667%
+}
+#navwrap .row
+{position: relative;
+	overflow:visible
+}
+
+#navwrap
+{
+	clear:both;
+	margin-bottom:20px;
+	z-index:90;
+	width:100%
+}
+
+#navwrap.absolute
+{
+	position:absolute
+}
+
+#navwrap.fixed
+{
+	position:fixed
+}
+
+/* Rules for menu sprite
+-----------------------------------------------------------------------------*/
+#nav ul li .sf-with-ul,#nav span.mainlevel span,a#zenpanelopen,a#zenpanelclose,#nav ul li ul li .sf-with-ul,.sidebar ul li li a,#toTop{
+background: url(../images/menu/menusprite.png) no-repeat top left;
+}
+
+#nav ul li .sf-with-ul,#nav span.mainlevel span
+{
+
+	background-position: -1235px 18px
+}
+
+#nav ul li, #nav ul li span.mainlevel span
+{
+	color:#fff;
+	font-weight:bold;
+	padding:0
+}
+
+#nav ul li a,#nav ul li .mainlevel
+{
+	height:42px;
+	text-align:center;
+	line-height:42px;
+	color:#fff;
+	text-transform:uppercase;
+	display:block;
+	top:0;
+	margin:0;
+	padding:0
+}
+
+#nav ul li ul li .sf-with-ul
+{
+	background-position: -1080px 12px
+}
+
+#nav ul li li,#nav ul li a:hover,#nav ul li span.mainlevel span:hover
+{
+	color:#333
+}
+
+
+#nav ul li li a:hover,
+#nav ul li.active li.active a,
+#nav ul li.active li.active a:hover,
+#nav ul li.active li.active li.active a,
+#nav ul li.active li.active li.active a:hover
+{
+	background: #fafafa
+}
+
+
+#nav ul li ul li a,#nav ul li ul li .mainlevel
+{
+
+	color:#333;
+	text-transform:none;
+	text-align:left;
+	height:30px;
+	line-height:30px;
+	font-size:90%;
+	padding:0 20px
+}
+
+#navwrap li li {
+border-bottom: 1px dashed #fff;
+border-top: 0;
+}
+#nav ul li ul li span
+{
+
+}
+
+#nav ul li ul li ul
+{
+	top:0;
+	border-left:1px solid #e8e8e8
+}
+
+#nav ul li ul
+{
+	left:0;
+	top:46px;
+	-moz-box-shadow:2px 2px 2px #ddd;
+	-webkit-box-shadow:2px 2px 2px #ddd;
+	box-shadow:2px 2px 2px #ddd
+}
+
+
+#nav ul
+{
+	margin:0;
+	padding:0
+}
+
+#nav
+{
+	height:46px;
+	margin:0
+}
+
+#nav ul li.sfHover ul ul,.moduletable-superfish ul.li.sfHover ul ul
+{
+	top:0
+}
+
+#navwrap li li:last-child
+{
+	border-bottom:0
+}
+
+/* Common to left, right and center columns
+-----------------------------------------------------------------------------*/
+#jbSplitMenuAbove,#jbSplitMenuLeft,#jbSplitMenuRight,.sidebar .moduletable,.sidebar .moduletable-slide,.sidebar .moduletable-panelmenu
+{
+	float:left;
+	width:100%;
+	margin:0 0 50px
+}
+
+
+.sidebar ul li 
+{
+	display:block;
+	color:#666;
+	border-bottom: 1px dashed #ddd;
+	line-height:2.8;
+	padding:0
+}
+
+.sidebar ul li:last-child {
+border: 0;
+}
+
+.sidebar ul li li {
+border: 0;line-height: 2;
+}
+
+.sidebar ul li span.mainlevel.open span,.sidebar ul li span.separator.open span,.sidebar ul li.active span.mainlevel.open span,.moduleTitle.close,.sidebar span.separator
+{
+background: url(../images/menu/arrowDown.png) no-repeat right 8px;border-bottom: 0;
+}
+
+.sidebar ul li span.mainlevel span,.moduleTitle.open,.sidebar span.separator
+{
+	background-image:url(../images/menu/arrowUp.png);
+	background-repeat:no-repeat;
+	background-position:right 8px;
+	font-weight: bold;
+	cursor:pointer
+}
+
+.moduleTitle.close,.moduleTitle.open.sidebar span.separator.open {
+width: 100%;display: block;float: left;background-position: right 6px;
+}
+
+.sidebar span.separator {
+display: block;
+}
+
+
+#jbSplitMenuAbove ul li ul li a,#jbSplitMenuAbove ul li.active ul li a,.sidebar ul li ul li a,.sidebar ul li.active ul li a
+{
+	background-color:transparent;
+	text-indent:30px;
+	color:#666;
+	padding:0
+}
+
+#jbSplitMenuAbove ul li ul li,#jbSplitMenuAbove ul li.active ul li,.sidebar ul li ul li,.sidebar ul li.active ul li
+{
+	padding:0
+}
+
+#jbSplitMenuAbove ul li,#jbSplitMenuAbove ul li.active,.sidebar ul li,.sidebar ul li.active
+{
+	text-indent:6px;
+	list-style-type:none;
+	margin:0;
+	padding:0
+}
+
+#jbSplitMenuAbove .color1 .jbmoduleBody,#jbSplitMenuAbove .color2 .jbmoduleBody,#jbSplitMenuAbove .color3 .jbmoduleBody,#jbSplitMenuAbove .color4 .jbmoduleBody,#jbSplitMenuAbove .color5 .jbmoduleBody,#jbSplitMenuAbove .color6 .jbmoduleBody,#jbSplitMenuAbove .hilitedefault .jbmoduleBody,.sidebar .color1 .jbmoduleBody,.sidebar .color2 .jbmoduleBody,.sidebar .color3 .jbmoduleBody,.sidebar .color4 .jbmoduleBody,.sidebar .color5 .jbmoduleBody,.sidebar .color6 .jbmoduleBody,.sidebar .hilitedefault .jbmoduleBody
+{
+	clear:both
+}
+
+.sidebar ul li li a
+{
+	background-position: -835px 6px;}
+
+.sidebar ul li#current span {font-weight: bold;}
+
+/* Tagline
+-----------------------------------------------------------------------------*/
+#logo #tagline span
+{
+height: auto;font-size: 0.55em
+}
+
+#tagline {
+margin-top: 10px;
+}
+
+
+/* Breadcrumbs
+-----------------------------------------------------------------------------*/
+#breadcrumb .pathway a
+{
+	display:inline
+}
+
+#breadcrumb .pathway .separator
+{
+	font-weight:700;
+	margin:0 5px
+}
+
+#breadcrumb .pathway
+{
+	display:block;
+	margin:0 0 10px
+}
+
+#breadcrumb
+{
+	font-size:90%;
+	margin:0 0 30px
+}
+
+#mainwrap
+{
+	background-position: 0 40px;
+	padding:15px 0 0
+}
+
+.page span.breadcrumbs {
+	color: #666;
+	font-weight:normal;
+}
+
+/* JB Meta and Joomla content
+-----------------------------------------------------------------------------*/
+.jbCreatedate .datemonth,.jbCreatedate .dateday,.jbModifydate .datemonth,.jbModifydate .dateday,.jbSectCat .datemonth,.jbSectCat .dateday,.jbAuthor .datemonth,.jbAuthor .dateday
+{
+	margin:0 5px 0 0
+}
+
+.jbCreatedate,.jbModifydate,.jbSectCat,.jbAuthor,.jbPublished,.jbHits
+{
+	font-style:italic;
+	font-size: 90%;margin-right: 20px;
+	line-height:20px;float: left;
+}
+
+.jbMeta h2
+{
+	line-height:1;
+	margin:0 0 10px
+}
+
+.jbMeta h2.icons
+{
+	padding:0 50px 0 0
+}
+
+.jbMeta .jbCreatedate,.jbMeta .jbPublishdate,.jbMeta .jbSectCat
+{
+	float:left;
+	margin:0 20px 0 0
+}
+
+.jbMeta .buttons
+{
+position: absolute;top: 0;right: 0;
+}
+
+.jbMeta
+{
+	padding-bottom:10px;
+	width:100%;
+	border-bottom:4px solid #f2f2f2;
+	position:relative;
+	margin-bottom:20px;
+	float: left;
+}
+
+
+.row_separator,.leading_separator
+{
+	padding-bottom:10px;
+	width:100%;
+	border-bottom:4px solid #f2f2f2;
+	margin-bottom:20px;
+float: left;
+}
+
+.cols3 .row_separator {
+display: none;
+}
+
+.jbintrotext .grid_six .features,.itemBody .grid_six .features
+{
+	clear:both
+}
+
+.border
+{
+	background:none repeat scroll 0 0 #fff;
+	-moz-box-shadow:4px 4px 0 #ccc;
+	-webkit-box-shadow:4px 4px 0 #ccc;
+	box-shadow:4px 4px 0 #ccc;
+	max-width:98%;
+	padding: 0;border: 1px solid #fff;
+
+}
+
+.jbReadmore,a.readon
+{
+	float:right;margin-bottom: 30px;
+}
+
+.jbSection,.jbCategory,.jbFrontPage,.article_row
+{
+	margin-bottom:0
+}
+
+.article_row
+{
+	padding:0
+}
+
+/* Footer & Bottom Rows
+-----------------------------------------------------------------------------*/
+#bottom .moduletable
+{
+	border-right:1px solid #eee
+}
+
+#bottom ul li
+{
+	border-bottom:1px solid #eee
+}
+
+#footer
+{
+	border-top:1px solid #eee;
+	padding-top:8px
+}
+
+#footer ul li
+{
+	float:left
+}
+
+#footer ul li a
+{
+	margin-right:20px
+}
+
+#footer h3,#bottom h3
+{
+
+	text-transform:uppercase;
+	font-size:110%;
+	font-weight:700
+}
+
+#footer ul li,#bottom ul li
+{
+	line-height:2
+}
+
+#footer ul,#bottom ul
+{
+	list-style:none;
+	margin:0;
+	padding:0
+}
+
+#footer .moduletable,#bottom .moduletable
+{
+	margin-bottom:30px;
+	padding-right:30px
+}
+
+#footer #socialicons
+{
+	clear:right;
+	margin-top:0
+}
+
+#footer #footerRight
+{
+	float:right
+}
+
+/* Hidden Panel - Core often overriden in template overrides
+-----------------------------------------------------------------------------*/
+#zenoverlay {background: 0;}
+
+#navwrap a#zenpanelopen.active {margin-top: -46px}
+
+a#zenpanelclose span {display: block;text-indent: -9999em;}
+a#zenpanelclose.active span {display: block;text-indent: 0}
+a#zenpanelopen,a#zenpanelclose {background-position:  -1235px 18px; }
+a#zenpanelopen:hover{text-decoration:none}
+
+a#zenpanelclose  {display: none !important}
+a#zenpanelclose.active  {display:block !important}
+
+#navwrap ul li.panel a {
+border-bottom: 4px solid;
+}
+
+
+/* Close button inside the popup */
+a#zenpanelclose2
+{
+	position:absolute;
+	bottom: 20px;
+	text-indent:-9999em;
+	right:0px;
+	height:0px;
+	width:0px;
+	
+}
+
+a#zenpanelclose2:active,
+a#zenpanelclose2:focus{
+top: auto;
+}
+
+#zenpanel {
+top: 46px !important;left: 0 !important;width: 100% !important;background: url(../images/overlay/whiteOverlayOpaque.png);color: #333;z-index: 60;display: none;-moz-box-shadow:4px 4px 0 #ccc;
+	-webkit-box-shadow:4px 4px 0 #ccc;
+	box-shadow:none;-moz-border-radius: 0;-khtml-border-radius: 0;-webkit-border-radius: 0;border: 1px solid #ddd;border-width: 0 1px
+}
+
+#zenpanel ul li {float: none;border: 0;padding:8px 0;margin: 0;line-height: 1;border-bottom: 1px dashed #ccc;}
+#zenpanel ul li a {text-align: left;text-transform: inherit;margin: 0;padding: 0;line-height: 1;height: auto}
+
+
+/* Social Icons
+-----------------------------------------------------------------------------*/
+#socialicons h3
+{
+	text-align:left
+}
+
+#socialicons ul
+{
+	display:block !important;
+	padding:0 !important
+}
+
+#socialicons ul li
+{
+	border:0 none;
+	float:none
+}
+
+#socialicons ul li a img
+{
+	height:40px;
+	width:40px;
+	display:block;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px 20px 20px 20px;
+	-moz-background-clip:padding;
+	-webkit-background-clip:padding-box;
+	background-clip:padding-box;
+	border:0 none;
+	float:left;
+	margin:0 10px 0 0
+}
+
+/* Zentools
+-----------------------------------------------------------------------------*/
+.jbmoduleBody .zentools.list ul li .column .element2
+{
+	background-color:rgba(0,0,0,0.6);
+	color:#fff;
+	font-size:80%;
+	left:1px;
+	position:absolute;
+	top:1px;
+	font-style:italic;
+	font-weight:700;
+	padding:1px 5px
+}
+
+.jbmoduleBody .zentools.list ul li:first-child
+{
+	padding:0 0 20px
+}
+
+.jbmoduleBody .zentools.list ul li:last-child
+{
+	border:0 none
+}
+
+.jbmoduleBody .zentools.list ul li
+{
+	border-bottom:4px solid #f2f2f2;
+	padding:20px 0
+}
+
+/* Moduel classes
+-----------------------------------------------------------------------------*/
+.color1 .moduleTitle h3 span,.color2 .moduleTitle h3 span,.color3 .moduleTitle h3 span,.color4 .moduleTitle h3 span,.color5 .moduleTitle h3 span,.color6 .moduleTitle h3 span,.hilitedefault .moduleTitle h3 span,.componentheading span,#jbSplitMenuLeft h3 span,#jbSplitMenuRight h3 span
+{
+	clear:right;
+	color:#FFF;
+	float:left;
+	font-size:12px;
+	font-weight:700;
+	height:27px;
+	line-height:34px;
+	text-transform:uppercase;
+	margin:-27px 0 30px;
+	padding:0 15px
+}
+
+.color1 .moduleTitle h3,.color2 .moduleTitle h3,.color3 .moduleTitle h3,.color4 .moduleTitle h3,.color5 .moduleTitle h3,.color6 .moduleTitle h3,.hilitedefault .moduleTitle h3,.componentheading,#jbSplitMenuLeft h3,#jbSplitMenuRight h3
+{
+	height:4px;
+	overflow:visible;
+	border-bottom-style:solid;
+	border-bottom-width:4px;
+	font-size:13px;
+	font-weight:400;
+	line-height:3;
+	text-transform:uppercase;
+	margin:27px 0 25px
+}
+
+.color1 .moduleTitle,.color2 .moduleTitle,.color3 .moduleTitle,.color4 .moduleTitle,.color5 .moduleTitle,.color6 .moduleTitle
+{
+	overflow:visible;
+	margin:0
+}
+
+.color1 .jbmoduleBody,.color2 .jbmoduleBody,.color3 .jbmoduleBody,.color4 .jbmoduleBody,.color5 .jbmoduleBody,.color6 .jbmoduleBody
+{
+	clear:both
+}
+
+/* Search
+-----------------------------------------------------------------------------*/
+.results ol li p,.results ul li p,span.small {
+	
+	font-size:90%;
+	color:#989898;
+	margin:0 0 4px
+}
+
+.results ol li p a,.results ul li p a, span.small a {
+	
+	color:#989898;
+	
+}
+
+
+.results ol li .highlight,.results ul li .highlight
+{
+	font-style:italic
+}
+
+.results ol li,.results ul li
+{
+	border-bottom:4px solid #f2f2f2
+}
+
+.moduletable form.search input.button
+{
+	margin-top:0;
+	float:right;font-size: 90%;
+	padding:10px 20px
+}
+
+
+/* Search - Joomla 1.7
+-----------------------------------------------------------------------------*/
+#searchpage input#search-searchword.inputbox { 
+clear: both;float: left;width: 94%
+}
+
+#searchpage .form-limit {
+margin-top: 30px;
+}
+
+#searchpage form{
+border-bottom: 1px solid #eee;margin-bottom: 30px;padding-bottom: 20px;}
+
+#searchpage p {
+margin: 0;
+}
+
+.resultsblock {
+margin-bottom: 30px;border-bottom:4px solid #f2f2f2;padding-bottom: 30px;
+}
+
+a.resulttitle {
+font-size: 1.2em
+}
+
+/* BLOG STUFF
+-----------------------------------------------------------------------------*/
+
+h2.resulttitle {
+	font-size: 1.6em; margin-bottom: 0;
+}
+
+h2.resulttitle a {color: #91ab00}
+
+
+/* Joomla Grid
+-----------------------------------------------------------------------------*/
+.sectiontableentry1:hover,.even:hover
+{
+	background-color:#f2f2f2
+}
+
+.sectiontableentry1,.even
+{
+	background-color:#fff
+}
+
+.sectiontableentry2:hover,.odd:hover
+{
+	background-color:#f2f2f2
+}
+
+
+
+/* inputs, buttons etc
+-----------------------------------------------------------------------------*/
+input:hover,input:focus,textarea:hover,textarea:focus
+{
+	background-color:#f2f2f2
+}
+
+input,textarea
+{
+	background-color:#fff;
+	border:1px solid #e8e8e8;
+	padding:8px;color: #999;font-size: 1.1em;
+}
+
+.button:hover,button:hover,input[type="reset"]:hover,input[type="button"]:hover,input[type="submit"]:hover,.jbReadmore a:hover,.zenmore a:hover,.k2ReadMore a:hover,a.readon
+{
+	text-decoration:none
+}
+
+.button,button,input[type="reset"],input[type="button"],input[type="submit"],.jbReadmore a,.zenmore a,.k2ReadMore a,a.readon
+{
+	width:auto;
+	border:0 none;
+	border-bottom-style:solid;
+	border-bottom-width:4px;
+	text-transform:uppercase;
+	color:#fff;
+	line-height:2;
+	padding:5px 10px
+}
+
+.button,button,input[type="reset"],input[type="button"],input[type="submit"]
+{
+	line-height:1
+}
+
+.jbReadmore a:visited,.jbReadmore a:active,.zenmore a:visited,.zenmore a:active,.k2ReadMore a:visited,.k2ReadMore a:active,.button:visited,.button:active,a.readon
+{
+	color:#fff
+}
+
+input[type="radio"],input[type="checkbox"]
+{
+	width:auto;
+	border:0 none
+}
+
+form.form-login fieldset
+{
+	margin:0 0 20px
+}
+
+form.form-login p
+{
+	padding: 8px 0;
+	border-bottom: 1px dashed #ddd;
+}
+
+
+form.form-login input.button
+{font-size: 90%;
+	float:right
+}
+
+table [colspan]
+{
+	text-align:left
+}
+
+table [rowspan]
+{
+	vertical-align:top
+}
+
+th,td
+{
+	padding:0.5em
+}
+
+.contact_email label
+{
+	display:inline-block;
+	margin:10px 0 0
+}
+
+.prettydiv
+{
+	float:left;
+	margin-bottom:10px
+}
+
+.moduletable .jbmoduleBody .zenshadow img
+{
+	-moz-box-shadow:4px 4px 0 #666;
+	-webkit-box-shadow:4px 4px 1px #666;
+	box-shadow:4px 4px 0 #ccc;
+	border:1px solid #fff
+}
+
+#mainContent ul
+{
+	line-height: 2;
+}
+
+#mainContent ul li p
+{
+	margin:0
+}
+
+/* Tools
+-----------------------------------------------------------------------------*/
+.clr,.clear
+{
+	height:0 !important;
+	visibility:hidden !important;
+	line-height:0 !important;
+	clear:both !important;
+	border:0 none !important;
+	content:".";
+	display:block !important;
+	font-size:0 !important;
+	margin:0 !important;
+	padding:0 !important
+}
+
+* html .clr,* html .clear
+{
+	height:1%;
+	overflow:visible
+}
+
+*+html .clr,*+html .clear
+{
+	min-height:1%
+}
+
+.clr:after,.clear:after
+{
+	clear:both;
+	content:".";
+	display:block;
+	height:0;
+	visibility:hidden;
+	font-size:0
+}
+
+.features
+{
+	border-bottom:4px solid #eee;
+	float:left;
+	margin:0 0 20px;
+	padding:0 0 20px
+}
+
+#toTop {
+background-position: -420px 6px;bottom: 8px;right: 8px;text-align: center;padding: 8px;z-index: 90;padding-left: 20px;
+}
+
+.zentools.grid .zenimage {margin-bottom: 30px;}
+.zenmore {float: right;}
+
+/* Module Classes
+-----------------------------------------------------------------------------*/
+.border3 .jbmoduleBody  {
+border: 1px solid #eee;padding: 8px;border-radius:8px;background: #fefefe
+}
+
+
+
+
+#callus {
+position:relative;
+left:290px;
+right:0px;
+top:37px;
+bottom:0;
+
+}
+
+#ma {
+position:relative;
+top:0px;
+left:20px;
+}
+
+#angie {
+position: relative;
+height:150px;
+width:100px;
+bottom:-80px;
+left:850px;
+
+z-index:70000;
+}
+
+#mojo {
+position: relative;
+left:850px;
+bottom:-90px;
+z-index:90000;
+width:135px;
+
+}
+
+#header {
+position:relative;
+z-index:1;
+}
+/*
+div#grid1wrap div.container div.row div.inner div.grid1wrap div#grid1.grid_twelve div.moduletable div.jbmoduleBody{
+	margin-left: 90px;
+}
+div#headerwrap div.container div.row div.inner div#header4{
+	z-index:99;
+
+}
+*/
+
+
+div#phnumber {
+font-size:14pt;
+/*
+position:relative;
+bottom:218px;
+left:230px;
+z-index:99999;
+*/
+
+}
+/* HILITESUMMER */
+/*------------------------------------------------------------------
+Template:	JB ColourShift
+Version:	Joomla 1.5
+Zen Grid: 	v2.0
+Copyright:	Joomlabamboo
+Created:	December 2011
+------------------------------------------------------------------ */
+
+
+/* Link Hovers
+---------------------------------------------------*/
+a:hover { color:#7da9c5; }
+
+
+#bannerwrap .slideshow .slidenavdiscs .slidenav li.active {
+border-color:   #c1d070; background-color:  #c1d070;
+}
+
+/* First Background 
+---------------------------------------------------*/
+#k2container .k2ratingblock span, #k2container .k2ratingblock .itemratinglog, .k2links .k2hitstwitter, .k2links .k2hitsblock { color:#c1d070; }
+
+
+/* Links
+---------------------------------------------------*/
+a, #logo h1 a:hover, #logo h2 a:hover, #breadcrumb .separator, #footer a:hover, .hilitetext, .sidebar ul li.active ul li#current a, .results ol li h4 a, .results ul li h4 a, .results ol li .highlight, .results ul li .highlight{ color:#91ab00; }
+
+#zenpanel ul li a {
+color: #aaa
+}
+
+/* Common Background Colours
+---------------------------------------------------*/
+.button, button, input[type=reset], input[type=button], input[type=submit], .zenmore a, .jbReadmore a, .k2readmore a, .k2ReadMore a, #jbSplitMenuAbove ul li.active a, #jbSplitMenuAbove ul li.active span.mainlevel span, .hilitedefault .moduleTitle, .k2Title .featured,a.readon{ background-color: #91ab00; border-bottom-color: #c1d070; }
+
+
+/* Common Background Hovers
+---------------------------------------------------*/
+.button:hover, button:hover, input[type=reset] :hover, input[type=button] :hover, input[type=submit] :hover, .zenmore a:hover, .jbReadmore a:hover, .k2readmore a:hover, .k2ReadMore  a:hover ,a.readon:hover{ background-color: #c1d070; border-bottom-color: #91ab00; color: #91ab00 !important; }
+
+
+/* Common Backgrounds without Border
+---------------------------------------------------*/
+#socialicons ul li a img, .mbleftcol .mbmaxbizdate, .hilitedefault .moduleTitle h3 { background-color:#3b5998; }
+
+#mainwrap .row, #jbSplitMenuAbove ul li a, #jbSplitMenuAbove ul li span.mainlevel span, .sidebar ul li a, .sidebar ul li span.mainlevel span, .k2Links, .k2Navigation, #k2Container { border-bottom-color:#c1d070; }
+
+
+/* Social Icon Hovers
+---------------------------------------------------*/
+#socialicons ul li a img:hover { background-color:#38d0ff; }
+
+
+/* First Background Hovers
+---------------------------------------------------*/
+#jbSplitMenuAbove ul li a:hover, #jbSplitMenuAbove ul li span.mainlevel span:hover, #jbSplitMenuAbove ul li .open:hover, #jbSplitMenuAbove ul li.active a:hover, #jbSplitMenuAbove ul li.active span.mainlevel span:hover, .sidebar ul li a:hover, .sidebar ul li span.mainlevel span:hover, .sidebar ul li .open:hover, .sidebar ul li.active a:hover, .sidebar ul li.active span.mainlevel span:hover { background-color: #c1d070; border-bottom-color: #91ab00; color: #333}
+
+/* PALETTE SUMMER */
+/*------------------------------------------------------------------
+Template:	JB ColourShift
+Version:	Joomla 1.5
+Zen Grid: 	v2.0
+Copyright:	Joomlabamboo
+Created:	December 2011
+------------------------------------------------------------------ */
+
+/* Colour 1
+-----------------------------------------------------------------------------*/
+.componentheading span, 
+.color1 .moduleTitle h3 span { background-color: #6e97b3; }
+
+
+
+#navwrap ul li.menu1 li,
+#navwrap ul li.menu1 li.active li a,
+#navwrap ul li.menu6 li,
+#navwrap ul li.menu6 li.active li a{ background-color: #aec5d4; border-bottom-color: #6e97b3; }
+
+
+#navwrap ul li.menu1,.stripe1,.color1 .moduleTitle h3,.componentheading,
+#navwrap ul li.menu6,.stripe6,.color6 .moduleTitle h3{ background-color: #6e97b3; border-bottom-color:  #aec5d4; }
+
+
+/* Colour 2
+-----------------------------------------------------------------------------*/
+.color2 .moduleTitle h3 span,
+ul.jbtabs li a:hover{ background-color: #7da9c5; }
+
+
+#navwrap ul li.menu2 li,
+#navwrap ul li.menu2 li.active li a,
+#jbSplitMenuLeft h3,#jbSplitMenuLeft h3 span,#jbSplitMenuRight h3,#jbSplitMenuRight h3 span,
+#navwrap ul li.menu7 li,
+#navwrap ul li.menu7 li.active li a { background-color: #b6cfde; border-bottom-color: #7da9c5;}
+
+
+#navwrap ul li.menu2,.stripe2,.color2 .moduleTitle h3,
+#navwrap ul li.menu7,.color7 .moduleTitle h3{ background-color: #7da9c5; border-bottom-color:#b6cfde; }
+
+
+/* Colour 3
+-----------------------------------------------------------------------------*/
+.color3 .moduleTitle h3 span { background-color:#91ab00; }
+
+#navwrap ul li.menu3 li,
+#navwrap ul li.menu3 li.active li a,
+ul.jbtabs li.active a,ul.jbtabs,
+#navwrap ul li.menu8 li,
+#navwrap ul li.menu8 li.active li a{ background-color: #c1d070; border-bottom-color: #91ab00; }
+
+
+#navwrap ul li.menu3,.stripe3,.color3 .moduleTitle h3,
+#navwrap ul li.menu8,.color8 .moduleTitle h3{ background-color: #91ab00; border-bottom-color: #c1d070; }
+
+
+
+
+
+/* Colour 4
+-----------------------------------------------------------------------------*/
+.color4 .moduleTitle h3 span { background-color: #dd4e31; }
+
+#navwrap ul li.menu4 li,
+#navwrap ul li.menu4 li.active li a,
+#navwrap ul li.menu9 li,
+#navwrap ul li.menu9 li.active li a{ background-color: #f0b29c; border-bottom-color: #e4754f;}
+
+
+#navwrap ul li.menu4,.stripe4,.color4 .moduleTitle h3,
+#navwrap ul li.menu9,.color9 .moduleTitle h3 { background-color: #dd4e31; border-bottom-color:#ff8f87; }
+
+
+
+/* Colour 5
+-----------------------------------------------------------------------------*/
+.color5 .moduleTitle h3 span 
+
+#navwrap ul li.menu5 li,
+#navwrap ul li.menu5 li.active li a,
+#navwrap ul li.menu10 li,
+#navwrap ul li.menu10 li.active li a{ background-color: #ffc90c; border-bottom-color: #f0986c; }
+
+
+#navwrap ul li.menu5,.stripe5,.color5 .moduleTitle h3,
+#navwrap ul li.menu10,.color10 .moduleTitle h3{ background-color: #ffc90c; border-bottom-color: #ffe991;  }
+
+
+
+/* Colour 6
+-----------------------------------------------------------------------------*/
+.color6 .moduleTitle h3 span { background-color:#c2d4b2; }
+
+
+
+#navwrap ul li.panel a,.stripe6,.color6 .moduleTitle h3{ background-color: #93b375; border-bottom-color: #c2d4b2; }
+
+
+.stripe6,.color6 .moduleTitle h3{ background-color:#c2d4b2; border-bottom-color: #93b375; }
+
+/* MEDIA QUERIES */
+/*------------------------------------------------------------------
+Template:	JB ColourShift
+Version:	Joomla 1.5
+Zen Grid: 	v2.0
+Copyright:	Joomlabamboo
+Created:	December 2011
+------------------------------------------------------------------ */
+ 
+/* Rules for Media queries. If you want to create your own media query file just create a file called mediaqueroes.css in your css file.
+-----------------------------------------------------------------------------*/
+
+@media only screen and (min-width: 880px) and (max-width: 1000px) {	
+	.container{width:860px !important}
+	.fb-like {width: 50px;overflow: hidden; }
+	#logo h1 {font-size: 240%;}
+}
+
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 880px) {
+	.container{width:660px !important}
+	#nav ul li {font-size: 90%;}
+#nav ul li .sf-with-ul,#nav span.mainlevel span
+{
+
+	background-position: -1242px 18px
+}
+	.fb-like {width: 50px;overflow: hidden; }
+	#logo h1,#logo h2 {font-size: 190%;}
+	#socialicons ul li a img {margin: 0 4px 0 0;}
+}
+
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 660px) {
+
+	.container {width: 480px !important;}
+	/* Makes all grid positions 100% in width on small browsers */
+	.grid_one,
+	.grid_two,
+	.grid_three,
+	.grid_four,
+	.grid_five,
+	.grid_six,
+	.grid_seven,
+	.grid_eight,
+	.grid_nine,
+	.grid_ten,
+	.grid_eleven,
+	.grid_twelve,
+	.grid_1,
+	.grid_2,
+	.grid_3,
+	.grid_4 {
+		width: 100%;
+	} 	 
+	
+	.zenimage {margin-bottom:20px;}
+	
+	#logo {margin-top: 40px;margin-bottom: 70px;}
+	#logo h1,#logo h2 {font-size: 200%;}
+	/* CSS for the mobile menu */
+	#navwrap #mobilemenu {display: block;padding: 15px 0 10px;position: relative;}
+	#navwrap.absolute #mobilemenu {margin-top: 135px;}
+	#navwrap.fixed #mobilemenu {margin-top: 175px;}
+	#mobilemenu select {width:400px;text-align: center;}
+	#menuwrap {text-indent: -9999em;margin-top: -35px;}
+
+	/* Reset on the menu */
+	#nav ul li .sf-with-ul { background-image:none}
+	#nav ul ul,#nav li li,#nav li ul,#nav ul li ul {visibility: hidden;-moz-box-shadow:0;
+-webkit-box-shadow:0;box-shadow:none}
+	#logo h1 a{line-height: 1em;}
+	#navwrap.fixed {position: absolute !important;}
+	#navwrap.absolute #menuwrap {display: none;}
+	
+	/* Give some space to the header positions and the logo */
+	#headerwrap {padding: 0}
+	#headerwrap .row {margin-bottom: 0;}
+	#header4 {text-align: left;}
+	
+	/* Zentools*/
+	.grid_six .zenimage a{text-align: center}
+
+	/* Hides the hidden panel on small browsers*/
+	#zenpanel{display: none !important;}
+
+	/* Special module class to hide some modules on small browsers */
+	.moduletable.mobilehide{display: none;}
+	
+	#bottom .moduletable {border-right: 0;margin: 0;}
+	
+	
+	/* Resets the push and pull for source ordered content */
+	.onecols_pull,
+	.twocols_pull,
+	.threecols_pull,
+	.fourcols_pull,
+	.fivecols_pull,
+	.sixcols_pull,
+	.sevencols_pull,
+	.eightcols_pull,
+	.ninecols_pull,
+	.tencols_pull,
+	.elevencols_pull,
+	.twelvecols_pull,
+	.onecols_push,
+	.twocols_push,
+	.threecols_push,
+	.fourcols_push,
+	.fivecols_push,
+	.sixcols_push,
+	.sevencols_push,
+	.eightcols_push,
+	.ninecols_push,
+	.tencols_push,
+	.elevencols_push,
+	.twelvecols_push
+	{left: 0;}
+	
+
+
+	#tabwrap .container {padding: 0;}
+	#nav ul li a {padding-left: 0;padding-right: 0;}
+	ul.jbtabs {border: 0;height: auto;}
+	ul.jbtabs li {float: none;list-style-type: none;margin: 0;}
+	ul.jbtabs li a {color: #999;padding: 12px 0px;border: 0;border-bottom: 1px solid #ddd;padding: 4px;display: block;}
+	ul.jbtabs li a:hover {border-bottom: 1px solid #ddd;border-width: 0 0 1px 0;}
+	ul.jbtabs li.active a {border-width: 0 0 1px 0;margin: 0;border-bottom: 1px solid #ddd;padding: 4px 0}
+	#zenpanel {width: 90% !important;height: auto !important;}
+	a#zenpanelopen {margin-top: -10px;margin-right: -5px;padding-top: 12px;}
+	#bannerwrap .container {padding: 0;}
+
+	.jb_left45,.jb_right45 {width: 100% !important;margin: 0 !important;border: 0 !important;padding: 0 !important;}
+	.fb-like {width: 50px;overflow: hidden; }
+	
+	#bannerwrap {
+	background: url(../images/bg.png) repeat-x scroll 0 280px; 
+	}
+	
+	/* Joomal content */
+	.column1.cols2,.cols-2 .column-1,.column2.cols2,.cols-2 .column-2,.column1.cols3,.column2.cols3,.cols-3 .column-1,.cols-3 .column-2,.column3.cols3,.cols-3 .column-3,.column1.cols4,.column2.cols4,.column3.cols4,.cols-4 .column-1,.cols-4 .column-2,.cols-4 .column-3,.column4.cols4,.cols-4 .column-4,.column1.cols5,.column2.cols5,.column3.cols5,.column4.cols5,.cols-5 .column-1,.cols-5 .column-2,.cols-5 .column-3,.cols-5 .column-4,.column5.cols5,.cols-5 .column-5   {width: 100%;float: left;margin: 0 0 30px 0;}
+		
+	.row_separator,.leading_separator {
+display: none;
+}
+		
+
+
+
+
+}
+
+@media only screen and (max-width:480px) {
+	.container {width: 100% !important;}
+	#mobilemenu select {width:370px;text-align: center;}
+	.fb-like {width: 50px;overflow: hidden; }
+	
+
+}
+
+/* CUSTOM */
+/*------------------------------------------------------------------
+Template:	JB ColourShift
+Version:	Joomla 1.5
+Zen Grid: 	v2.0
+Copyright:	Joomlabamboo
+Created:	December 2011
+------------------------------------------------------------------ */
+
+/* Put your custom rules here.  */
+
+p {
+font-size: 1.1em;
+margin-bottom: 1 em;
+line-height: 1.5em;
+}
+
+div#phnumber {
+  font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight:bolder;
+  font-size: 20px;
+  line-height: 22px;
+}
+h2.zenh2title {
+  font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight:bolder;
+  font-size: 16px;
+  line-height: 18px;
+}
+div#grid1wrap div.container div.row div.inner div.grid1wrap div#grid1.grid_twelve div.moduletable div.jbmoduleBody {
+   margin-left: 0;
+   width: 100%;
+   overflow: hidden;
+   height: 130px;
+}
+#navwrap, #bannerwrap, #mainwrap, #grid1wrap, #grid2wrap, #bottomrow, #footerwrap, #headerwrap {
+  margin: 0 0 15px;
+}
+.grid_twelve, grid_, .grid_1, .moduletable.noresize .grid_twelve, .moduletable.noresize .grid_1 {
+  padding: 0 0 7px 0;
+}
+
+h1.customH1 a {
+  line-height: 133%;
+}
+.zentools.grid .zenimage {
+  margin-bottom: 0px;
+}
+h1.customH1 {
+  font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight:bolder;
+  font-size: 24px;
+  line-height: 26px;
+  margin-bottom: 0px;
+}
+.zentools h2 {
+  font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight:bolder;
+  font-size: 18px;
+  line-height: 20px;
+}
+div.custom {
+  overflow:hidden;
+}
+#footerLeft.grid_eight {
+  width: 100%;
+}
+iframe {
+  border:none;
+}
+.sidebar .moduletable {
+  margin: 0;
+}
+/* ZENTOOLS */
+/*------------------------------------------------------------------
+Module:	Zentools
+Version:	Joomla 1.5 / Joomla 1.7
+Copyright:	Joomlabamboo
+Created:	December 2011
+---------------------------------------------------*/
+
+
+/*  General Styling
+-----------------------------------------------------------------------------*/
+.zentools {
+position:relative;
+float:left;
+width:100%
+}
+
+.zentools ul {
+float:left;
+width:100%;
+margin:0
+}
+
+.zentools li {
+list-style-type:none;
+padding:0
+}
+
+.zentext,.zentitle,.zenimage {
+clear:both
+}
+
+.zenimage,.zenvideo,.zentools .grid ul {
+float:left;
+width:100%
+}
+
+
+/* Modal Window
+-----------------------------------------------------------------------------*/
+img.modal {
+margin-bottom:20px;
+box-shadow:0 0 3px rgba(0, 0, 0, .2);
+-moz-box-shadow:0 0 3px rgba(0, 0, 0, .2);
+-webkit-box-shadow:0 2px 3px rgba(0, 0, 0, .3);
+background:#fff;
+border:0
+}
+
+/* Video Elements
+-----------------------------------------------------------------------------*/
+/*video {
+width:100% !important;
+height:auto !important
+}
+
+.video-container {
+position:relative;
+padding-bottom:56.25%;
+padding-top:0;
+height:0;
+overflow:hidden
+}
+*/
+/*
+.video-container iframe,.video-container object,.video-container embed {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:94%
+}
+
+.allitems.video {
+display:none;
+text-indent:-9999em;
+background:0;
+height:0
+}
+*/
+/* Main content
+-----------------------------------------------------------------------------*/
+.zencontent {
+padding:20px 0
+}
+
+/* Image Effects
+-----------------------------------------------------------------------------*/
+.zenborder img,.zenborder .zenvideo {
+border:1px solid #ddd;
+background:#eee;
+margin:0 10px 10px 0;
+padding:4px
+}
+
+.zenshadow img {
+-moz-box-shadow:0 0 5px #888;
+-webkit-box-shadow:0 0 5px;
+box-shadow:0 0 5px #888
+}
+
+.zenrounded img {
+border-radius:4px
+}
+
+.zenroundedshadow img {
+-moz-box-shadow:0 0 5px #888;
+-webkit-box-shadow:0 0 5px;
+box-shadow:0 0 5px #888;
+border-radius:4px
+}
+
+/* Accordion
+-----------------------------------------------------------------------------*/
+.zentools .accordion .grid_one,.zentools .accordion .grid_two,.zentools .accordion .grid_three,.zentools .accordion .grid_four,.zentools.accordion .grid_six,.zentools .accordion .grid_eight,.zentools .accordion .grid_twelve {
+width:100%
+}
+
+.zentools.accordion ul {
+width:98%;
+margin:0
+}
+
+.zentools.accordion .firstitem {
+border-bottom:1px solid #eee;
+cursor:pointer;
+margin:10px 0
+}
+
+.zentools.accordion .firstitem,.zentools.accordion .firstitem.open {
+background:url(../images/accordion/accordion.png) no-repeat left 6px;
+padding-left:30px
+}
+
+.zentools.accordion .firstitem.open {
+background-position:0 -74px
+}
+
+.zentools.accordion .first {
+cursor:pointer;
+border-bottom:1px solid #ddd;
+margin-bottom:20px
+}
+
+.zentools.masonry li.grid_2,.zentools.masonry li.grid_six {
+width:40.5%
+}
+
+.zentools.masonry li.grid_3,.zentools.masonry li.grid_four {
+width:29%
+}
+
+.zentools.masonry li.grid_4,.zentools.masonry li.grid_three {
+width:20.75%
+}
+
+.zentools.masonry li.grid_6,.zentools.masonry li.grid_two {
+width:11%
+}
+
+.zentools.masonry li.grid_12,.zentools.masonry li.grid_one {
+width:4.5%
+}
+
+.zentools.masonry img {
+margin-bottom:20px
+}
+
+/* Carousel
+-----------------------------------------------------------------------------*/
+.zentools.carousel .zenitem {width:94%;padding: 10px;}
+.zentools.carousel.overlay .zenitem {width:94%;padding: 0;}
+
+/* Slideshow
+-----------------------------------------------------------------------------*/
+.zentools.slideshow li {
+margin:0
+}
+
+.zentools.slideshow ul.slidenav li {margin: 0 10px 0 0;}
+
+.slideshowoverlay .allitems,.slideshowoverlayFrame .allitems {
+position:absolute;
+bottom:30px;
+background:rgba(0,0,0,.4);
+color:#fff;
+width:92%;
+padding:10px 4%
+}
+
+.slideshowoverlay h2 a,.slideshowoverlayFrame .allitems h2 a {
+color:#fff
+}
+
+.zenitem {
+position:relative
+}
+
+.slideshowoverlayFrame {
+background:#f9f9f9;
+border:1px solid #eee;
+border-radius:4px;
+float:left;
+width:94%;
+padding:20px
+}
+
+.slideshowflat .flex-direction-nav li a {
+top:-45px;
+z-index:11
+}
+
+ul.slidenav {
+float:left;position: relative;z-index: 20;
+width:75%
+}
+
+.slidenavnumbers ul li,.slidenavdiscs ul li {
+float:left;
+margin-right:8px;
+background:#eee;
+border-radius:4px;
+cursor:pointer;
+margin-bottom:12px;
+padding:4px 8px
+}
+
+.slidenavnumbers ul li.active {
+background:#999;
+color:#fff
+}
+
+.slidenavdiscs ul li {
+background:url(../images/slideshow/nav.png) 0 0 no-repeat;
+display:block;
+text-indent:-9999em;
+margin:0
+}
+
+.slidenavdiscs ul li.active {
+background:url(../images/slideshow/nav.png) 0 -79px no-repeat;
+display:block;
+text-indent:-9999em;
+margin:0
+}
+
+.slidenavtitle {
+position:absolute;
+right:0
+}
+
+.slidenavthumb ul li {
+margin-bottom:12px;
+float:left;
+margin-right:10px;
+cursor:pointer
+}
+
+/* List Styling
+-----------------------------------------------------------------------------*/
+.zentools.list ul li {
+list-style-type:none;
+border-bottom:1px solid #ddd;
+float:left;
+width:100%;
+line-height:1.8;
+margin:0;
+padding:20px 0
+}
+
+.zentools.list h2 {
+margin-bottom:0
+}
+
+
+/* Accordion
+-----------------------------------------------------------------------------*/
+.zentools h2,.zentools.accordion h2,.zentools.grid h2,.zentools.slideshow h2,.slideshowoverlayFrame .allitems h2 {
+margin:0;
+padding:0
+}
+
+.zeninner,.zentools li .zenitem,.zentools.accordion {
+width:100%;
+float:left
+}
+
+
+/* Masonry
+-----------------------------------------------------------------------------*/
+.zentools.masonry li.grid_1,.zentools.masonry li.grid_twelve,.zentools.masonry li.full {
+width:94%
+}
+
+.zentools.masonry .zenitem,.zentools .grid .zenitem,.zentools.grid .zenitem {
+margin-bottom:30px
+}
+
+
+/* Grid Settings
+-----------------------------------------------------------------------------*/
+.zentools.nomargin .grid_one,.zentools.nomargin .grid_two,.zentools.nomargin .grid_three,.zentools.nomargin .grid_four,.zentools.nomargin .grid_five,.zentools.nomargin .grid_six,.zentools.nomargin .grid_seven,.zentools.nomargin .grid_eight,.zentools.nomargin .grid_nine,.zentools.nomargin .grid_ten,.zentools.nomargin .grid_eleven,.zentools.nomargin .grid_twelve,.zentools.nomargin .zenitem.image {margin: 0;}
+
+.zentools.nomargin .zenlast {float: left;}
+
+
+/* Resize the grid values if no margin is assigned. */ 
+.zentools.nomargin .grid_twelve,.zentools.nomargin .grid_1 {width: 100%;float: left;}
+.zentools.nomargin .grid_six,.zentools.nomargin .grid_2 {width: 50%;float: left;} 
+.zentools.nomargin .grid_four,.zentools.nomargin .grid_3{width: 33.3333333%;float: left;}
+.zentools.nomargin .grid_three,.zentools.nomargin .grid4{width: 25%;float: left;}
+.zentools.nomargin .grid_two,.zentools.nomargin .grid6{width: 16.6666667%;float: left;}
+.zentools.nomargin .grid_one,.zentools.nomargin .grid12{width: 8.333333%;float: left;}
+
+
+/* Overlay Effect
+-----------------------------------------------------------------------------*/
+.zentools.overlay li {
+overflow: hidden;
+}
+
+.zentools.overlay .allitems {
+position: absolute;z-index: 10;background: url(../images/blackOverlay.png);display: none;width: 92.5%;padding: 8px 4%
+}
+
+.zentools.overlay .allitems a,.zentools.overlay .allitems {
+color: #fff;
+}
+
+
+	
+	
+@media only screen and max-width 600px  {
+.slideshowoverlay .allitems,.slideshowoverlayFrame .allitems {
+bottom:60px
+}
+
+.grid_twelve .zencontent,.zentools .grid_twelve .imagecontainer,ul.slidenav {
+width:100%
+}
+
+.zentools.masonry .grid_1,.zentools.masonry .grid_2,.zentools.masonry .grid_3,.zentools.masonry .grid_4,.zentools.masonry .grid_5,.zentools.masonry .grid_6 {
+width:97% !important;
+margin-left:2%
+}
+
+
+
+.zentools.accordion .grid_twelve,.zentools.slideshow li.grid_twelve {
+margin:0
+}
+}
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+.alignnone {}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+
+
+/* Shit I found in-line */
+
+body {font-size: 75%; margin-top: 0;} 
+
+.container {width: 1000px;} 
+
+
+#logo span a{color:#333333}#tagline span{top: 0px;left:0px;}

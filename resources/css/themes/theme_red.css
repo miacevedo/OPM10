@@ -1,0 +1,58 @@
+body{
+	background-color: #6c232a !important;
+	background-image: url("images/red/ap_bg_red.png");
+}
+#main{
+	background-color: #ad4b4c;
+	border: 5px solid #eeeeee;
+}
+#mf_form_list li .middle_form_bar{
+	background-color: #9b5657;
+}
+#mf_form_list li.form_selected div.middle_form_bar,
+#mf_form_list li .middle_form_bar:hover,
+#mf_search_box,#mf_search_title, #mf_search_tag {
+	background: none;
+    background-color: #ad4b4c;
+}
+#mf_search_title a, #mf_search_tag a{
+	color: #ad4b4c;
+}
+#filter_form_input{
+	border-color: #ad4b4c;
+}
+#footer .copyright,#footer a:link, #footer a:visited {
+	color: #ad4b4c;
+}
+.ui-dialog{
+	border: 15px solid #ad4b4c !important;
+	background-color: #ad4b4c !important;
+}
+#mf_form_list .form_option{
+ background-color: #9B5657;
+}
+#mf_form_list .form_option:hover{
+	background-color: #edb817;
+}
+.dropui-pink .dropui-tab{
+	background-color: #AD4B4C !important;
+	border-color: #AD4B4C !important;
+} 
+.dropui-pink:hover .dropui-content { border-color: #AD4B4C !important; }
+.dropui-pink.dropui-menu .dropui-content { background-color: #AD4B4C !important; }
+#mf_form_list .form_option.mf_link_entries,#mf_form_list .form_option.mf_link_edit{
+    background-color: #b87e5a;
+}
+#bottom_bar{
+	background-color: #c77e7e;
+	border-color: #c77e7e;
+}
+#social,#btn_add_field{
+	background-color: #c77e7e !important;
+}
+#btn_add_field a{
+	color: #fff !important;
+}
+#social li a:link {
+    background-color: #a3534f;
+}

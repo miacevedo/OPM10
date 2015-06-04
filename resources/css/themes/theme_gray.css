@@ -1,0 +1,58 @@
+body{
+	background-color: #CCCCCC !important;
+	background-image: url("images/gray/ap_bg_gray.png");
+}
+#main{
+	background-color: #666666;
+	border: 4px solid #FFFFFF;
+}
+#mf_form_list li .middle_form_bar{
+	background-color: #515151;
+}
+#mf_form_list li.form_selected div.middle_form_bar,
+#mf_form_list li .middle_form_bar:hover,
+#mf_search_box,#mf_search_title, #mf_search_tag {
+	background: none;
+    background-color: #666666;
+}
+#mf_search_title a, #mf_search_tag a{
+	color: #fff;
+}
+#filter_form_input{
+	border-color: #666666;
+}
+#footer .copyright,#footer a:link, #footer a:visited {
+	color: #666666;
+}
+.ui-dialog{
+	border: 15px solid #666666 !important;
+	background-color: #666666 !important;
+}
+#mf_form_list .form_option{
+ background-color: #515151;
+}
+#mf_form_list .form_option:hover{
+	background-color: #edb817;
+}
+#mf_form_list .form_option.mf_link_entries,#mf_form_list .form_option.mf_link_edit{
+    background-color: #8A888B;
+}
+.dropui-pink .dropui-tab{
+	background-color: #666666 !important;
+	border-color: #666666 !important;
+} 
+.dropui-pink:hover .dropui-content { border-color: #666666 !important; }
+.dropui-pink.dropui-menu .dropui-content { background-color: #666666 !important; }
+#social,#btn_add_field{
+	background-color: #8A888B !important;
+}
+#social li a:link {
+    background-color: #c6c5cd;
+}
+#bottom_bar{
+	background-color: #8A888B;
+	border-color: #8A888B;
+}
+#btn_add_field a{
+	color: #fff !important;
+}
